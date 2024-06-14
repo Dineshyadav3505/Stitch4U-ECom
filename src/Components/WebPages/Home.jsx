@@ -2,12 +2,9 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <>
-    <div className="  font-1   " >Home</div>
-    <div className=" font-2   " >Home</div>
-    <div className=" " >Home</div>
+    <div className='h-[1000px] bg-white'>
 
-    </>
+    </div>
   )
 }
 
