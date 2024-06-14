@@ -22,7 +22,7 @@ return (
       <span>4</span>
       U</h1>
       
-      <NavLink href="/search"> <img className='w-6' src="/img/Search.svg" alt="" /></NavLink>
+      <NavLink to="/search"> <img className='w-6' src="/img/Search.svg" alt="" /></NavLink>
     </div>
 
     
