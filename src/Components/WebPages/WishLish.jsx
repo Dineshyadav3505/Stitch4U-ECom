@@ -12,7 +12,7 @@ const WishLish = () => {
   ]
 
   return (
-    <div className='w-full min-h-screen bg-[#FAF9F8] pt-16 '>
+    <div className='w-full bg-[#FAF9F8] pt-16 '>
 
         {favourites.length >= 1 ? (
           <div className="">

@@ -9,10 +9,6 @@ import WishLish from './Components/WebPages/WishLish'
 import UserCreate from './Components/WebPages/UserCreate'
 import UserLogin from './Components/WebPages/UserLogin'
 
-
-
-
-
 const App = () => {
 
   const [colour, setColour] = useState("white")
