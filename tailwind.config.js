@@ -1,6 +1,7 @@
-import Montserrat from "./public/Font/NotoSans_Condensed-Regular.ttf"
-import Lora from "./public/Font/Lora-Regular.ttf"
-import HMSans from "./public/Font/HMSans-Regular.ttf" 
+import Montserrat from "./public/Font/NotoSans_Condensed_Regular.ttf";
+import Lora from "./public/Font/Lora_Regular.ttf";
+import HMSans from "./public/Font/HMSans_Regular.ttf";
+import HMSansLatin from "./public/Font/HMSansLatin_SemiBold.ttf";
 
 
 export default {
@@ -14,14 +15,8 @@ export default {
         '1': ['Montserrat'],
         '2': ['Lora'],
         '3': ['Hmsans'],
+        "4": ['HMSansLatin'],
       },
-      dropShadow: {
-        '3xl': '0 -5px -5px rgba(0, 0, 0, 1)',
-        '4xl': [
-            '0 35px 35px rgba(0, 0, 0, 0.25)',
-            '0 45px 65px rgba(0, 0, 0, 0.15)'
-        ]
-      }
     },
   },
   plugins: [],

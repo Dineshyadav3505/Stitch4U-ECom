@@ -23,7 +23,7 @@ return (
       U</h1>
       
       <div className="flex justify-between items-center md:gap-5">
-      <NavLink to="/logIn">    <img className='w-6 hidden md:block' src="/img/user.svg" alt="" /></NavLink>
+      <NavLink to="/user">    <img className='w-6 hidden md:block' src="/img/user.svg" alt="" /></NavLink>
       <NavLink to="/search">   <img className='w-6        md:block' src="/img/Search.svg" alt="" /></NavLink>
       <NavLink to="/wishlist"> <img className='w-6 hidden md:block' src="/img/heart.svg" alt="" /></NavLink>
       <NavLink to="/cart">     <img className='w-6 hidden md:block' src="/img/cart.svg" alt="" /></NavLink>
