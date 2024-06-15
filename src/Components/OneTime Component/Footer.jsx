@@ -65,7 +65,7 @@ const Footer = () => {
   return (
     <div className='px-5 pb-20 md:mb-5 pd:px-10 bg-[#E4E4E4]'>
       {data.map((item, index) => (
-        <>
+        <div key={index}>
         <div key={index} className="px-4 w-full md:hidden">
           <div
             className="flex justify-between  items-center text-black hover:text-red-500 cursor-pointer"
@@ -101,7 +101,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        </>
+        </div>
         
 
 
