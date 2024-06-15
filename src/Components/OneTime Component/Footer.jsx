@@ -116,7 +116,7 @@ const Footer = () => {
           <div className="inline-flex justify-between w-2/3 md:w-1/4 border-b-2 mt-7 border-black">
             <input className='w-full text-sm py-2  text-black focus:outline-none' type="text" value={email} onChange={(event) => setEmail(event.target.value)} placeholder='Email'/>
             <button className='' type="submit">
-              <img className='w-full' src="/public/img/mail.svg" alt="" />
+              <img className='w-full' src="/img/mail.svg" alt="" />
             </button>
           </div>
         </form>
