@@ -63,12 +63,12 @@ const Footer = () => {
 
 
   return (
-    <div className='px-5 mb-20 md:mb-5 md:px-10'>
+    <div className='px-5 pb-20 md:mb-5 pd:px-10 bg-[#E4E4E4]'>
       {data.map((item, index) => (
         <>
         <div key={index} className="px-4 w-full md:hidden">
           <div
-            className="flex justify-between items-center text-black hover:text-red-500 cursor-pointer"
+            className="flex justify-between  items-center text-black hover:text-red-500 cursor-pointer"
             onClick={() => handleToggle(index)}
           >
             <h6 className="py-2 font-1 text-lg">{item.title}</h6>
@@ -89,7 +89,7 @@ const Footer = () => {
                 
         <div className="hidden md:inline-flex gap-9 items-center">
           <div className="px-4 mr-20">
-            <h6 className='py-2 font-1 text-lg '>{item.title}</h6>
+            <h6 className='py-2 font-1 mt-10 text-lg '>{item.title}</h6>
             <ul className="list-none">
               {item.data.map((subItem, subIndex) => (
                 <li key={subIndex}>
@@ -114,7 +114,7 @@ const Footer = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="inline-flex justify-between w-2/3 md:w-1/4 border-b-2 mt-7 border-black">
-            <input className='w-full text-sm py-2  text-black focus:outline-none' type="text" value={email} onChange={(event) => setEmail(event.target.value)} placeholder='Email'/>
+            <input className='w-full text-sm py-2  text-black focus:outline-none bg-transparent' type="text" value={email} onChange={(event) => setEmail(event.target.value)} placeholder='Email'/>
             <button className='' type="submit">
               <img className='w-full' src="/img/mail.svg" alt="" />
             </button>
