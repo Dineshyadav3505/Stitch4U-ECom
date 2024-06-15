@@ -52,7 +52,7 @@ const Footer = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setFormSubmitted(true);
-    resetForm();
+    resetForm("");
   };
 
   const [openIndex, setOpenIndex] = useState(null);
