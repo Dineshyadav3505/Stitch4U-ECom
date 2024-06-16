@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from '../utils/Axios';
 
 const UserLogin = () => {
     const [formData, setFormData] = useState({
@@ -28,7 +29,7 @@ const UserLogin = () => {
             setError('Email and password are required');
         } else {
             try {
-                const response = await fetch('/api/register', {
+                const response = await fetch('/users/logIn', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
