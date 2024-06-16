@@ -34,10 +34,12 @@ const UserLogin = () => {
                     email: formData.email,
                     password: formData.password,
                 });
-                console.log(response.data)
     
-                if (response.ok) {
+                if (response.data.success) {
                     console.log('Form data submitted successfully');
+                    // Set the token as a cookie
+                    document.cookie = `accessToken=${response.data.accessToken}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
+                    // Use the user data and access token as needed
                 } else {
                     console.error('Error submitting form data');
                 }
