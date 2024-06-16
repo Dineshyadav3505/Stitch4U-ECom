@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import instance from '../../utils/Axios';
-import ReactDOM from 'react-dom';
+import Cookies from 'js-cookie';
 
 const UserLogin = () => {
     const [formData, setFormData] = useState({
@@ -34,15 +34,19 @@ const UserLogin = () => {
                     email: formData.email,
                     password: formData.password,
                 });
-    
+
                 if (response.data.success) {
                     console.log('Form data submitted successfully');
-                    // Set the token as a cookie
-                    document.cookie = `accessToken=${response.data.accessToken}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
-                    // Use the user data and access token as needed
+                    // Set the token as a cookie using js-cookie
+                    Cookies.set('access_token', response.data.data.accessToken, { expires: 1 });
+                    Cookies.set('user', response.data.data.user, { expires: 1 });
+  
                 } else {
                     console.error('Error submitting form data');
                 }
+                console.log("cookie")
+                console.log(Cookies.get('access_token'));
+
             } catch (error) {
                 console.error('Error submitting form data:', error);
             }
@@ -90,6 +94,5 @@ const UserLogin = () => {
         </div>
     );
 };
-
 
 export default UserLogin;
