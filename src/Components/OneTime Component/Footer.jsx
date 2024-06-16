@@ -68,7 +68,7 @@ const Footer = () => {
         <div key={index}>
         <div key={index} className="px-4 w-full md:hidden">
           <div
-            className="flex justify-between  items-center text-black hover:text-red-500 cursor-pointer"
+            className=" flex justify-between  items-center text-black hover:text-red-500 cursor-pointer"
             onClick={() => handleToggle(index)}
           >
             <h6 className="py-2 font-1 text-lg">{item.title}</h6>

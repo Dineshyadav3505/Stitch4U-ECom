@@ -27,7 +27,7 @@ const Navbar = () => {
 
 return (
   <>
-    <div className='fixed w-full h-16 px-4 md:px-8 flex justify-between items-center bg-[#FAF9F8] shadow-xl '>
+    <div className='fixed z-10 w-full h-16 px-4 md:px-8 flex justify-between items-center bg-[#FAF9F8] shadow-xl '>
       <NavLink onClick={handleMenuToggle} className=" hover:text-zinc-200">
         <img className='w-6' src="/img/Menu.svg" alt="" />
       </NavLink>  
@@ -44,7 +44,7 @@ return (
       </div>
     </div>
 
-    <div className="fixed bottom-0 w-full h-16 px-6 flex justify-between items-center bg-[#FAF9F8] drop-shadow-[0_-35px_35px_rgba(0,0,0,0.3)] md:hidden">
+    <div className="fixed z-10 bottom-0 w-full h-16 px-6 flex justify-between items-center bg-[#FAF9F8] drop-shadow-[0_-35px_35px_rgba(0,0,0,0.3)] md:hidden">
         <NavLink to="/">         <img className='w-6' src="/img/home.svg" alt="" /></NavLink>
         <NavLink to="/new">      <img className='w-6' src="/img/new.svg" alt="" /></NavLink>
         <NavLink to="/wishlist"> <img className='w-6' src="/img/heart.svg" alt="" /></NavLink>
@@ -52,7 +52,7 @@ return (
         <NavLink to="/logIn">    <img className='w-6' src="/img/user.svg" alt="" /></NavLink>
     </div>
 
-    <div className= {`menu absolute w-[300px] md:w-[450px] bg-[#FAF9F8] top-0 ${menuOpen ? 'left-0' : '-left-[100%]'} px-5 pt-5 overflow-auto`} >
+    <div className= {`menu absolute z-20 w-[300px] md:w-[450px] bg-[#FAF9F8] top-0 ${menuOpen ? 'left-0' : '-left-[100%]'} px-5 pt-5 overflow-auto`} >
       <button onClick={handleMenuToggle} className="flex justify-end w-full"> <img src="/img/close.svg" alt="" />
       </button>
 
