@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from '../utils/Axios';
+import instance from '../../utils/Axios';
+import ReactDOM from 'react-dom';
 
 const UserLogin = () => {
     const [formData, setFormData] = useState({
@@ -29,17 +30,12 @@ const UserLogin = () => {
             setError('Email and password are required');
         } else {
             try {
-                const response = await fetch('/users/logIn', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: formData.email,
-                        password: formData.password,
-                    }),
+                const response = await instance.post('/users/logIn', {
+                    email: formData.email,
+                    password: formData.password,
                 });
-
+                console.log(response.data)
+    
                 if (response.ok) {
                     console.log('Form data submitted successfully');
                 } else {
@@ -92,5 +88,6 @@ const UserLogin = () => {
         </div>
     );
 };
+
 
 export default UserLogin;
