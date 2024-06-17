@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import Cookies from 'js-cookie';
+import instance from '../../utils/Axios';
 
 
 
 const Navbar = () => {
+
 
   const data = [
     {img:"/img/new.jpeg",                name:"New Arrivals",          women:"/New_Arrivals/women",              men:"/New_Arrivals/men",             kids:"/New_Arrivals/kids",                 sports:"/New_Arrivals/sports"},
@@ -29,8 +32,25 @@ const Navbar = () => {
 
   const fullName = Cookies.get('fullName');
 
+  const logout = async () => {
+    try {
+      // Log out the user on the server
+      await instance.post('/users/logOut', {});
   
-};
+      // Reset the cookies
+      Cookies.remove('accessToken',);
+  
+      // Clear the req.user property
+      req.user = null;
+  
+      console.log('Logged out successfully');
+    } catch (error) {
+      console.error('Error logging out:', error.message);
+    }
+  };
+    
+
+  
 
 return (
   <>
@@ -85,7 +105,7 @@ return (
       ))}
 
       <div className="py-2">
-        <NavLink onClick={ ()=>{handleMenuToggle(); console.log("log out")}} to="/logIn" className="font-1 text-lg text-black py-3 capitalize tracking-wider flex items-center justify-between hover:text-red-400"> Log Out <i className="ri-logout-box-r-line"></i> </NavLink>
+        <NavLink onClick={ ()=>{handleMenuToggle(); logout(); console.log("log out")}} to="/logIn" className="font-1 text-lg text-black py-3 capitalize tracking-wider flex items-center justify-between hover:text-red-400"> Log Out <i className="ri-logout-box-r-line"></i> </NavLink>
       </div>
 
 

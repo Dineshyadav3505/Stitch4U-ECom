@@ -38,11 +38,7 @@ const UserLogin = () => {
                 });
 
                 if (response.data.success) {
-                    Cookies.set('access_token', response.data.data.accessToken, { expires: 1 });
-                    Cookies.set('fullName', response.data.data.user.fullName, { expires: 1 });
-                    Cookies.set('user_id', response.data.data.user._id, { expires: 1 });
-                    Cookies.set('email', response.data.data.user.email, { expires: 1 });
-                    Cookies.set('phoneNumber', response.data.data.user.phoneNumber, { expires: 1 });
+                    Cookies.set('accessToken', response.data.data.accessToken, { expires: 1 });
                     // Use the user data and access token as needed
                 } else {
                     console.error('Error submitting form data');
