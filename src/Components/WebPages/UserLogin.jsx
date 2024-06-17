@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import instance from '../../utils/Axios';
 import Cookies from 'js-cookie';
 
+
 const UserLogin = () => {
     const [formData, setFormData] = useState({
         email: '',
@@ -24,6 +25,7 @@ const UserLogin = () => {
         });
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!formData.email || !formData.password) {
@@ -36,17 +38,19 @@ const UserLogin = () => {
                 });
 
                 if (response.data.success) {
-                    console.log('Form data submitted successfully');
-                    // Set the token as a cookie using js-cookie
                     Cookies.set('access_token', response.data.data.accessToken, { expires: 1 });
-                    Cookies.set('user', response.data.data.user, { expires: 1 });
-  
+                    Cookies.set('fullName', response.data.data.user.fullName, { expires: 1 });
+                    Cookies.set('user_id', response.data.data.user._id, { expires: 1 });
+                    Cookies.set('email', response.data.data.user.email, { expires: 1 });
+                    Cookies.set('phoneNumber', response.data.data.user.phoneNumber, { expires: 1 });
+                    // Use the user data and access token as needed
                 } else {
                     console.error('Error submitting form data');
                 }
-                console.log("cookie")
-                console.log(Cookies.get('access_token'));
 
+
+
+                
             } catch (error) {
                 console.error('Error submitting form data:', error);
             }

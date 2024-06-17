@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
+
+
 const Navbar = () => {
 
   const data = [
@@ -24,6 +26,11 @@ const Navbar = () => {
   const handleMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
+
+  const fullName = Cookies.get('fullName');
+
+  
+};
 
 return (
   <>
@@ -56,7 +63,11 @@ return (
       <button onClick={handleMenuToggle} className="flex justify-end w-full"> <img src="/img/close.svg" alt="" />
       </button>
 
-      {data.map((item, index) => (
+        <div className="py-7 text-xl font-1 capitalize">
+          {fullName ? `Hello, ${(fullName).split(" ")[0].toUpperCase()}` : 'Hello, User'}
+        </div>     
+        
+        {data.map((item, index) => (
         <div key={index} className="h-16 overflow-hidden hover:h-full">
           <button className="font-1 w-full text-sm text-black h-16 capitalize tracking-wider flex items-center hover:text-red-400" > <span className=' block h-12 w-12 rounded-full overflow-hidden mr-3 '><img className=' object-bottom scale-110' src={item.img} alt="/" /></span> {item.name}
           </button>
@@ -72,6 +83,12 @@ return (
 
         </div>
       ))}
+
+      <div className="py-2">
+        <NavLink onClick={ ()=>{handleMenuToggle(); console.log("log out")}} to="/logIn" className="font-1 text-lg text-black py-3 capitalize tracking-wider flex items-center justify-between hover:text-red-400"> Log Out <i className="ri-logout-box-r-line"></i> </NavLink>
+      </div>
+
+
     </div>
 
     
