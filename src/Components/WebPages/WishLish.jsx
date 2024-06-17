@@ -7,8 +7,6 @@ const WishLish = () => {
     {img:"/img.j.jpeg", title:"", price:"", fit:"",},
     {img:"", title:"", price:"", fit:"",},
     {img:"", title:"", price:"", fit:"",},
-
-
   ]
 
   return (

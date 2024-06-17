@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import instance from '../../utils/Axios';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 const UserCreate = () => {
   const [formData, setFormData] = useState({
@@ -39,21 +42,23 @@ const UserCreate = () => {
       setError('Full name, Email, phone number, and password are required');
     } else {
       try {
-        const response = await fetch('/api/register', {
-          method: 'POST',
+        const response = await axios.post('http://localhost:4567/api/v1/users/register', JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          phoneNumber: formData.phoneNumber,
+          fullName: formData.fullName,
+
+        }), {
           headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            fullName: formData.fullName,
-            email: formData.email,
-            phoneNumber: formData.phoneNumber,
-            password: formData.password,
-          }),
+            'Content-Type': 'application/json'
+          }
         });
+        console.log(response);
 
         if (response.ok) {
           console.log('Form data submitted successfully');
+          // Set the access token in a cookie that expires in 7 days
+          Cookies.set('accessToken', response.data.data.accessToken, { expires: 7 });
         } else {
           console.error('Error submitting form data');
         }
@@ -119,7 +124,7 @@ const UserCreate = () => {
         {error && (
           <p className="text-red-500 text-xs mt-2">{error}</p>
         )}
-        <button type="submit" className="bg-black mt-10 text-white w-60 h-8 md:h-10 md:w-96 text-xs rounded-md">
+        <button onClick={handleSubmit} type="submit" className="bg-black mt-10 text-white w-60 h-8 md:h-10 md:w-96 text-xs rounded-md">
           Create Account
         </button>
 

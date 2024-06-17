@@ -8,6 +8,7 @@ import instance from '../../utils/Axios';
 const Navbar = () => {
 
 
+
   const data = [
     {img:"/img/new.jpeg",                name:"New Arrivals",          women:"/New_Arrivals/women",              men:"/New_Arrivals/men",             kids:"/New_Arrivals/kids",                 sports:"/New_Arrivals/sports"},
     {img:"/img/best.jpeg",               name:"Best Selling",          women:"/Best_Selling/women",              men:"/Best_Selling/men",             kids:"/Best_Selling/kids",                 sports:"/Best_Selling/sports"},
@@ -32,13 +33,15 @@ const Navbar = () => {
 
   const fullName = Cookies.get('fullName');
 
+  const token = Cookies.get('accessToken');
+
   const logout = async () => {
     try {
       // Log out the user on the server
-      await instance.post('/users/logOut', {});
-  
+      const response = await instance.post('/users/logOut')
+
       // Reset the cookies
-      Cookies.remove('accessToken',);
+      Cookies.remove('accessToken');
   
       // Clear the req.user property
       req.user = null;
@@ -48,7 +51,6 @@ const Navbar = () => {
       console.error('Error logging out:', error.message);
     }
   };
-    
 
   
 
@@ -105,7 +107,7 @@ return (
       ))}
 
       <div className="py-2">
-        <NavLink onClick={ ()=>{handleMenuToggle(); logout(); console.log("log out")}} to="/logIn" className="font-1 text-lg text-black py-3 capitalize tracking-wider flex items-center justify-between hover:text-red-400"> Log Out <i className="ri-logout-box-r-line"></i> </NavLink>
+        <NavLink onClick={ ()=>{handleMenuToggle(); logout(); console.log("log out")}} to="/" className="font-1 text-lg text-black py-3 capitalize tracking-wider flex items-center justify-between hover:text-red-400"> Log Out <i className="ri-logout-box-r-line"></i> </NavLink>
       </div>
 
 
