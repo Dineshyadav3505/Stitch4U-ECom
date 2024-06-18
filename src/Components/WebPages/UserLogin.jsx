@@ -5,10 +5,14 @@ import Cookies from 'js-cookie';
 
 
 const UserLogin = () => {
+
+    const [user, setUser] = useState(null);
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
+
     const [error, setError] = useState(null);
 
     const handleInputChange = (e) => {
@@ -38,17 +42,18 @@ const UserLogin = () => {
                 });
 
                 if (response.data.success) {
-                    Cookies.set('accessToken', response.data.data.accessToken, { expires: 1 });
+                    console.log('User data:', response.data.data.user);
                     // Use the user data and access token as needed
                 } else {
                     console.error('Error submitting form data');
+
                 }
 
 
 
                 
             } catch (error) {
-                console.error('Error submitting form data:', error);
+                console.error('Error submitting form data:', error.response.data.message);
             }
             resetForm();
         }
