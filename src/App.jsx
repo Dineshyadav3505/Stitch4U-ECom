@@ -8,10 +8,12 @@ import Cart from './Components/WebPages/Cart'
 import WishLish from './Components/WebPages/WishLish'
 import UserCreate from './Components/WebPages/UserCreate'
 import UserLogin from './Components/WebPages/UserLogin'
+// import { useDispatch } from 'react-redux'
 
 const App = () => {
 
-  const [colour, setColour] = useState("white")
+  const [loading, setLoading] = useState(true)
+  // const dispatch = useDispatch()
 
   return (
     <div className='w-full min-h-screen'>
