@@ -63,7 +63,7 @@ const UserCreate = () => {
           console.error('Error submitting form data');
         }
       } catch (error) {
-        console.error('Error submitting form data:', error);
+        console.error('Error submitting form data:', error.response.data.message);
       }
       resetForm();
     }
