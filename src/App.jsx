@@ -8,6 +8,8 @@ import Cart from './Components/WebPages/Cart'
 import WishLish from './Components/WebPages/WishLish'
 import UserCreate from './Components/WebPages/UserCreate'
 import UserLogin from './Components/WebPages/UserLogin'
+import LogIn from './Components/WebPages/LogIn'
+import Singup from './Components/WebPages/Singup'
 // import { useDispatch } from 'react-redux'
 
 const App = () => {
@@ -23,8 +25,8 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/Home" element={<Home/>} />
-      <Route path="/user" element={<UserCreate/>} />
-      <Route path="/logIn" element={<UserLogin/>} />
+      <Route path="/user" element={<Singup/>} />
+      <Route path="/logIn" element={<LogIn/>} />
       <Route path="/search" element={<SearchPage/>} />
       <Route path="/wishlist" element={<WishLish/>} />
       <Route path="/cart" element={<Cart/>} />

@@ -2,6 +2,7 @@ import React,{useId} from 'react'
 
 const Input = React.forwardRef( function Input ({
         label,
+        labelclass,
         type = 'text',
         className = '',
         onChange,
@@ -13,7 +14,7 @@ const Input = React.forwardRef( function Input ({
 
             <div className="w-full">
                 {label && <label 
-                className='inline-block mb-1 pl-1' 
+                className={`inline-block mb-1 pl-1 ${labelclass}`} 
                 htmlFor={id}>
                     {label}
                 </label>}
@@ -23,7 +24,8 @@ const Input = React.forwardRef( function Input ({
                 className={` ${className} `}
                 ref={ref}
                 {...props}
-                id={id}
+                
+
 
                 />
 
