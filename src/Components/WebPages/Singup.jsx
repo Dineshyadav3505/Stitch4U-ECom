@@ -8,6 +8,8 @@ import axios from '../../utils/Axios'
 
 const Singup = () => {
     const [error, setError] = useState('')
+    const [phoneError, setPhoneError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
     const [emailError, setEmailError] = useState("")
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -25,30 +27,50 @@ const Singup = () => {
             navigate('/')
             
         } catch (error) {
+
+            const backendError = (error.response.data.message)
+            const back = console.log(error.response.data.message)
+
+            if(error.response.data.message === "Phone number already exists"){
+                setPhoneError(error.response.data.message)
+            }
+
+            if(error.response.data.message === "Phone number must be 10 digits"){
+                setPhoneError(error.response.data.message)
+            }
+
+            if(error.response.data.message === "Password must be between 8 and 16 characters"){
+                setPasswordError(error.response.data.message)
+            }
+
             if(error.response.data.message === "Email already exists"){
                 setEmailError(error.response.data.message)
             }
-            // setError(error.response.data.message)
+
+
+
+         
         }
     }
+
 
   return (
     <div className="flex flex-col justify-center items-center py-44">
         <h6 className="text-black text-2xl py-1 font-semibold uppercase">Create Account</h6>
 
         <form onSubmit={handleSubmit(signup)} className='mt-10'>
-            <div className=" space-y-5">
+            <div className=" space-y-1">
                 <Input
-                    label={error}
-                    labelclass="text-xs text-red-600 capitalize"
+                    label={error || "Full Name"}
+                    labelclass={`text-xs capitalize ${error.length > 0 ? "text-black" : "text-red"}`}
                     type="text"
                     className='border w-60 h-8 block bg-transparent md:h-10 md:w-96 border-black rounded-md text-xs px-4 focus:outline-none'
                     placeholder="FullName"
                     {...register('fullName',{required: true})}
                 />
                 <Input
-                    label={emailError}
-                    labelclass="text-xs text-red-600 capitalize"
+                    label={emailError || "Email"}
+                    labelclass={`text-xs capitalize ${emailError.length > 0 ? "text-red-500" : "text-black"}`}
                     type="email"
                     className='border w-60 h-8 block bg-transparent md:h-10 md:w-96 border-black rounded-md text-xs px-4 focus:outline-none'
                     placeholder="Email"
@@ -61,25 +83,27 @@ const Singup = () => {
                     })}
                 />
                 <Input
-                    label={error}
-                    labelclass="text-xs text-red-600 capitalize"
+                    label={phoneError || "Phone Number"}
+                    labelclass={`text-xs capitalize ${phoneError.length > 0 ? "text-red-500" : "text-black"}`}
                     type="text"
                     className='border w-60 h-8 block bg-transparent md:h-10 md:w-96 border-black rounded-md text-xs px-4 focus:outline-none'
                     placeholder="Phone Number"
                     {...register('phoneNumber',{required: true})}
                 />
                 <Input
-                    label={error}
-                    labelclass="text-xs text-red-600 capitalize"
+                    label={passwordError || "password"}
+                    labelclass={`text-xs md:xs capitalize ${passwordError.length > 0 ? "text-red-500" : "text-black"}`}
                     type='password'
-                    className='border w-60 h-8 block bg-transparent md:h-10 md:w-96 border-black rounded-md text-xs px-4 focus:outline-none'
+                    className='border w-60 h-8 mb-5 block bg-transparent md:h-10 md:w-96 border-black rounded-md text-xs px-4 focus:outline-none'
                     placeholder="Password"
-                    {...register('password', {required: true})}
+                    {...register('password', {
+                        required: true,
+                    })}
                 />
 
                 <Button
                     type="submit"
-                    className="bg-black mt-10 text-white w-60 h-8 md:h-10 md:w-96 text-xs rounded-md"
+                    className="bg-black text-white w-60 h-8 md:h-10 md:w-96 text-xs rounded-md"
                     children="Create Account"
                 />
 
