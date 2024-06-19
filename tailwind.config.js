@@ -1,7 +1,4 @@
-import Montserrat from "./public/Font/NotoSans_Condensed_Regular.ttf";
-import Lora from "./public/Font/Lora_Regular.ttf";
-import HMSans from "./public/Font/HMSans_Regular.ttf";
-import HMSansLatin from "./public/Font/HMSansLatin_SemiBold.ttf";
+import h from "./public/Font/twentiethcentury_n4.1a7b2b68023505e1927302cc60a155187098ca59.woff2"
 
 
 export default {
@@ -12,11 +9,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        '1': ['Montserrat'],
-        '2': ['Lora'],
-        '3': ['Hmsans'],
-        "4": ['HMSansLatin'],
+        '1': 'Montserrat',
+        '2': 'h'
       },
+
     },
   },
   plugins: [],
