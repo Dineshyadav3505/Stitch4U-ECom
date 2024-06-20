@@ -6,16 +6,10 @@ import Footer from './Components/OneTime Component/Footer'
 import SearchPage from './Components/WebPages/SearchPage'
 import Cart from './Components/WebPages/Cart'
 import WishLish from './Components/WebPages/WishLish'
-import UserCreate from './Components/WebPages/UserCreate'
-import UserLogin from './Components/WebPages/UserLogin'
 import LogIn from './Components/WebPages/LogIn'
 import Singup from './Components/WebPages/Singup'
-// import { useDispatch } from 'react-redux'
 
 const App = () => {
-
-  const [loading, setLoading] = useState(true)
-  // const dispatch = useDispatch()
 
   return (
     <div className='w-full min-h-screen'>

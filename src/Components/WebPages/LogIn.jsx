@@ -21,13 +21,15 @@ const LogIn = () => {
                 password:  data.password
             })
             if(session){
-                const accesToken = console.log(session.data.data.accessToken)
-                const user = console.log(session.data.data.user)
+                const accesToken = session.data.data.accessToken
+                const user = session.data.data.user
+                dispatch({type: 'login', payload: {user}})
                 navigate('/')
             }
-            else(error.session.data.data.message)
+            else(error.session)
             
         } catch (error) {
+
             // console.log(error.response.data.message)
             if(error.response.data.message === "Incorrect password"){
                 setPasswordError(error.response.data.message)

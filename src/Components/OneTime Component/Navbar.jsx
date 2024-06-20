@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import instance from '../../utils/Axios';
-
+import { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
-
+  const fullname = useSelector((state) => state.auth.userData);
+  console.log(fullname)
+  
 
 
   const data = [
@@ -86,7 +88,7 @@ return (
       </button>
 
         <div className="py-7 text-xl font-1 capitalize">
-          {fullName ? `Hello, ${(fullName).split(" ")[0].toUpperCase()}` : 'Hello, User'}
+          {fullName ? `Hello, ${(user).split(" ")[0].toUpperCase()}` : 'Hello, User'}
         </div>     
         
         {data.map((item, index) => (

@@ -3,11 +3,6 @@ import Card from '../Reuse Component/ProductCard';
 import CategoryCard from '../Reuse Component/CategoryCard';
 
 const Home = () => {
-  function checkCookie() {
-    if (document.cookie.includes("user_id")) {
-        console.log("user_id");
-    }
-  }
 
 
   return (
