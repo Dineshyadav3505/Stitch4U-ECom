@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Button from '../Reuse Component/Button'
-import Input from '../Reuse Component/Input'
+import Button from '../Reuse_Component/Button'
+import Input from '../Reuse_Component/Input'
 import {useDispatch} from 'react-redux'
 import {useForm} from 'react-hook-form' 
 import axios from '../../utils/Axios'
+import Navbar from '../HeaderFooter/Header'
+import Footer from '../HeaderFooter/Footer'
 
 const LogIn = () => {
     const navigate = useNavigate()
@@ -42,6 +44,9 @@ const LogIn = () => {
 
 
   return (
+    <>
+    <Navbar/>
+
     <div className="flex flex-col justify-center items-center py-44">
         <h6 className="text-black text-2xl py-1 font-semibold uppercase">Login</h6>
 
@@ -83,6 +88,8 @@ const LogIn = () => {
         </form>
         
     </div>
+    <Footer/>
+    </>
   )
 }
 

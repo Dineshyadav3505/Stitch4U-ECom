@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Navbar from '../HeaderFooter/Header'
+import Footer from '../HeaderFooter/Footer'
 
 const SearchPage = () => {
   
@@ -20,6 +22,9 @@ const SearchPage = () => {
   ]
 
   return (
+    <>
+    <Navbar/>
+
     <div className='w-full min-h-full py-24 bg-[#FAF9F8] top-0 left-0'>
         <div className="w-full h-16 bg-[#FAF9F8] px-3 md:px-8 flex gap-3 items-center">
             <NavLink to="/" className="hover:text-zinc-200 md:hidden"><img src="/img/leftarrow.svg" alt="" /></NavLink>
@@ -72,6 +77,8 @@ const SearchPage = () => {
 
         
     </div>
+    <Footer/>
+    </>
   )
 }
 

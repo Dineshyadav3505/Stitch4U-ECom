@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import Navbar from '../HeaderFooter/Header';
+import Footer from '../HeaderFooter/Footer';
 
 
 const Cart = () => {
@@ -27,6 +29,8 @@ const Cart = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     // Cart
     <div className='w-full bg-[#FAF9F8] pt-16 md:flex '>
         {cart.length >= 1 ? (
@@ -151,6 +155,8 @@ const Cart = () => {
 
 
     </div>
+    <Footer/>
+    </>
   )
 }
 

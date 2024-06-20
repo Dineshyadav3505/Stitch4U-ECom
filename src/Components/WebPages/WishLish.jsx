@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Navbar from '../HeaderFooter/Header'
+import Footer from '../HeaderFooter/Footer'
 
 const WishLish = () => {
 
@@ -10,6 +12,8 @@ const WishLish = () => {
   ]
 
   return (
+    <>
+    <Navbar/>
     <div className='w-full bg-[#FAF9F8] pt-16 '>
 
         {favourites.length >= 1 ? (
@@ -50,6 +54,8 @@ const WishLish = () => {
         }
 
     </div>
+    <Footer/>
+    </>
   )
 }
 
