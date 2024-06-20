@@ -1,14 +1,14 @@
-
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import instance from '../../utils/Axios';
-
+import  { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
 
-
+  const user = useSelector(state => state.user);
+  const name = user.user.fullName;
 
   const data = [
     {img:"/img/new.jpeg",                name:"New Arrivals",          women:"/New_Arrivals/women",              men:"/New_Arrivals/men",             kids:"/New_Arrivals/kids",                 sports:"/New_Arrivals/sports"},
@@ -31,10 +31,6 @@ const Navbar = () => {
   const handleMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
-
-  const fullName = Cookies.get('fullName');
-
-  const token = Cookies.get('accessToken');
 
   const logout = async () => {
     try {
@@ -87,7 +83,7 @@ return (
       </button>
 
         <div className="py-7 text-xl font-1 capitalize">
-          {fullName ? `Hello, ${(fullName).split(" ")[0].toUpperCase()}` : 'Hello, User'}
+          {name ? `Hello, ${(name).split(" ")[0].toUpperCase()}` : 'Hello, User'}
         </div>     
         
         {data.map((item, index) => (

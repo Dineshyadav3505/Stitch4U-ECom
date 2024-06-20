@@ -7,6 +7,7 @@ import {useForm} from 'react-hook-form'
 import axios from '../../utils/Axios'
 import Navbar from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
+import { setUserLoginDetails } from '../../store/userSlice'
 
 const LogIn = () => {
     const navigate = useNavigate()
@@ -22,11 +23,11 @@ const LogIn = () => {
                 email: data.email,
                 password:  data.password
             })
-            if(session){
-                const accesToken = session.data.data.accessToken
-                const user = session.data.data.user
-                dispatch({type: 'login', payload: {user}})
-                navigate('/')
+            if (session) {
+                const accessToken = session.data.data.accessToken;
+                const user = session.data.data.user;
+                dispatch(setUserLoginDetails({ accessToken, user }));
+                navigate('/');
             }
             else(error.session)
             
