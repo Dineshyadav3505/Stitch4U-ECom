@@ -5,6 +5,7 @@ function SellerHome() {
   return (
     <>
     <Navbar/>
+    <h4 className='py-20'>hello</h4>
     </>
   )
 }

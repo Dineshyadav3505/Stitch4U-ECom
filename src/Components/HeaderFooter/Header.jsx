@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { NavLink,  useNavigate } from 'react-router-dom';
 import instance from '../../utils/Axios';
-import { useSelector } from 'react-redux';
+
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const user = JSON.parse?.(localStorage.getItem('user'));
   const fullName = user?.fullName;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,9 +23,9 @@ const Navbar = () => {
             'Authorization': `Bearer ${accessToken}`,
           },
         });
-        console.log('Logged out successfully');
-        localStorage.removeItem('accessToken');
         localStorage.removeItem('user');
+        localStorage.removeItem('accessToken');
+        navigate('/')
       } else {
         console.error('Error logging out: No access token found');
       }
@@ -69,7 +69,7 @@ const Navbar = () => {
           </NavLink> 
           :
           <NavLink to="/logIn" > 
-            <img className="w-6 hidden md:block" src="/img/user.svg" alt="" />
+            <img className="w-6 hidden md:block" src="/img/userlogin.svg" alt="" />
           </NavLink> }
 
           <NavLink to="/search">
