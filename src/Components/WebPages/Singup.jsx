@@ -27,6 +27,11 @@ const Singup = () => {
                 phoneNumber: data.phoneNumber,
                 password:  data.password,
             })
+            console.log(session.data.data)
+            const accessToken = session.data.data.accessToken;
+            const user = session.data.data;
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('user', JSON.stringify(user));
             navigate('/')
             
         } catch (error) {

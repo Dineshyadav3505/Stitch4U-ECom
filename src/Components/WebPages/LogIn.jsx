@@ -26,7 +26,10 @@ const LogIn = () => {
             if (session) {
                 const accessToken = session.data.data.accessToken;
                 const user = session.data.data.user;
+                localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('user', JSON.stringify(user));
                 dispatch(setUserLoginDetails({ accessToken, user }));
+                 
                 navigate('/');
             }
             else(error.session)
