@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Button from '../Reuse_Component/Button'
 import Input from '../Reuse_Component/Input'
 import {useDispatch} from'react-redux'
@@ -7,6 +7,7 @@ import {useForm} from'react-hook-form'
 import axios from '../../utils/Axios'
 import Navbar from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
+import Cookies from 'js-cookie';
 
 
 const Singup = () => {
@@ -30,6 +31,7 @@ const Singup = () => {
             console.log(session.data.data)
             const accessToken = session.data.data.accessToken;
             const user = session.data.data;
+            Cookies.set('accessToken', accessToken);
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('user', JSON.stringify(user));
             navigate('/')
@@ -118,6 +120,9 @@ const Singup = () => {
                 />
 
             </div>
+
+            <NavLink to="/login" className='text-sm mt-7 block text-center text-zinc-500 underline hover:text-zinc-900 '>Log In!</NavLink>
+
             
 
         </form>
