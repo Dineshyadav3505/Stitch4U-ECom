@@ -7,6 +7,7 @@ import Cart from './Components/WebPages/Cart'
 import WishLish from './Components/WebPages/WishLish'
 import LogIn from './Components/WebPages/LogIn'
 import Singup from './Components/WebPages/Singup'
+import CreateProduct from './Components/SellerPages/CreateProduct'
 
 const App = () => {       
 
@@ -23,6 +24,7 @@ const App = () => {
 
 
       <Route path="/Seller" element={<SellerHome/>}/>
+      <Route path="/Seller/product" element={<CreateProduct/>}/>
     </Routes>
  
     </div>

@@ -7,8 +7,13 @@ import  { useSelector } from 'react-redux';
 
 const Navbar = () => {
 
-  const user = useSelector(state => state.user);
-  const name = user.user.fullName;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const fullName = (user?.fullName);
+
+  if(fullName){
+    const firstName = fullName.split(" ")[0];
+  }
+
 
   const data = [
     {img:"/img/new.jpeg",                name:"New Arrivals",          women:"/New_Arrivals/women",              men:"/New_Arrivals/men",             kids:"/New_Arrivals/kids",                 sports:"/New_Arrivals/sports"},
@@ -83,7 +88,7 @@ return (
       </button>
 
         <div className="py-7 text-xl font-1 capitalize">
-          {name ? `Hello, ${(name).split(" ")[0].toUpperCase()}` : 'Hello, User'}
+          {fullName ? `Hello, ${(fullName).split(" ")[0] }` : 'Hello, User'}
         </div>     
         
         {data.map((item, index) => (
