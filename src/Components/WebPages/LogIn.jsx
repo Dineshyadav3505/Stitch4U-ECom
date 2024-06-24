@@ -29,16 +29,12 @@ const LogIn = () => {
             })
             if (session) {
                 const accessToken = session.data.data.accessToken;
-                const user = session.data.data.user;
-                const role = session.data.data.user.role;
-                console.log(role)
+                const user = session.data.data.user;                 
                 localStorage.setItem('accessToken', accessToken);
                 localStorage.setItem('user', JSON.stringify(user));
                 Cookies.set('accessToken', accessToken);
                 dispatch(setUserLoginDetails({ accessToken, user}));
-
                 navigate('/')
-
             }
             else(error.session)
             

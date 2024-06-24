@@ -12,8 +12,14 @@ const Navbar = () => {
   const handleMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
-
-  const accessToken = localStorage.getItem('accessToken');
+  
+  const cookie = document.cookie;
+  const cookieObj = cookie.split(';').reduce((acc, curr) => {
+    const [key, value] = curr.trim().split('=');
+    acc[key] = value;
+    return acc;
+  }, {});
+  const accessToken = cookieObj.accessToken;
 
   const logout = async () => {
     try {
@@ -24,6 +30,7 @@ const Navbar = () => {
           },
         });
         localStorage.removeItem('user');
+        document.cookie = 'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
         localStorage.removeItem('accessToken');
         navigate('/')
       } else {
@@ -73,7 +80,7 @@ const Navbar = () => {
           </NavLink> }
 
           <NavLink to="/search">
-            <img className="w-6 hidden md:block" src="/img/Search.svg" alt="" />
+            <img className="w-6" src="/img/Search.svg" alt="" />
           </NavLink>
 
           {accessToken ? 
@@ -99,11 +106,11 @@ const Navbar = () => {
       </div>
 
       <div className="fixed z-10 bottom-0 w-full h-16 px-6 flex justify-between items-center bg-[#FAF9F8] drop-shadow-[0_-35px_35px_rgba(0,0,0,0.3)] md:hidden">
-        <NavLink to="/"> <img className="w-6" src="/img/home.svg" alt="" /></NavLink>
-        <NavLink to="/new"> <img className="w-6" src="/img/new.svg" alt="" /></NavLink>
-        <NavLink to="/wishlist"> <img className="w-6" src="/img/heart.svg" alt="" /></NavLink>
-        <NavLink to="/cart"> <img className="w-6" src="/img/cart.svg" alt="" /></NavLink>
-        {accessToken ? <NavLink to="/user"> <img className="w-6" src="/img/user.svg" alt="" /></NavLink> :<NavLink to="/logIn"> <img className="w-6" src="/img/user.svg" alt="" /></NavLink> }
+                       <NavLink to="/">          <img className="w-6 mx-auto" src="/img/home.svg"  alt="" /><span className='text-xs text-block uppercase'>Home      </span> </NavLink>
+                       <NavLink to="/new">       <img className="w-6 mx-auto" src="/img/new.svg"   alt="" /><span className='text-xs text-block uppercase'>New       </span> </NavLink>
+                       <NavLink to="/wishlist">  <img className="w-6 mx-auto" src="/img/heart.svg" alt="" /><span className='text-xs text-block uppercase'>WishList  </span> </NavLink>
+                       <NavLink to="/cart">      <img className="w-6 mx-auto" src="/img/cart.svg"  alt="" /><span className='text-xs text-block uppercase'>BAG       </span> </NavLink>
+        {accessToken ? <NavLink to="/user">      <img className="w-6 mx-auto" src="/img/user.svg"  alt="" /><span className='text-xs text-block uppercase'>Profile   </span> </NavLink> :<NavLink to="/logIn"> <img className="w-6 mx-auto" src="/img/user.svg" alt="" /><span className='text-xs text-block uppercase'>Login</span></NavLink> }
       </div>
 
       <div

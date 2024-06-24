@@ -8,26 +8,29 @@ import WishLish from './Components/WebPages/WishLish'
 import LogIn from './Components/WebPages/LogIn'
 import Singup from './Components/WebPages/Singup'
 import CreateProduct from './Components/SellerPages/CreateProduct'
+import Auth from './utils/Auth'
+import New from './Components/WebPages/New'
 
 const App = () => {       
 
+
   return (
     <div className='w-full min-h-screen'>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/user" element={<Singup/>} />
+        <Route path="/signUp" element={<Singup/>} />
+        <Route path="/logIn" element={<LogIn/>} />
+        <Route path="/search" element={<SearchPage/>} />
+        <Route path="/wishlist" element={<WishLish/>} />
+        <Route path="/cart" element={<Cart/>} />
+        <Route path="/new" element={<New/>} />
 
-    <Routes>
-      <Route path="/" element={<Home/>} />
-      <Route path="/user" element={<Singup/>} />
-      <Route path="/signUp" element={<Singup/>} />
-      <Route path="/logIn" element={<LogIn/>} />
-      <Route path="/search" element={<SearchPage/>} />
-      <Route path="/wishlist" element={<WishLish/>} />
-      <Route path="/cart" element={<Cart/>} />
-
-      {/* protected routes */}
-      <Route path="/salesman" element={<SellerHome/>}/>
-      <Route path="/Seller/product" element={<CreateProduct/>}/>
-    </Routes>
- 
+        {/* protected routes */}
+        <Route path="/salesman" element={<SellerHome/>}/>
+        <Route path="/Seller/product" element={<CreateProduct/>}/>
+        <Route path="/Seller/product/ijhfg" element={<Auth/>}/>
+      </Routes>
     </div>
   )
 }
