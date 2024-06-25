@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import axios from '../../utils/Axios'
 import Navbar from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
+import Cookies from 'js-cookie';
 
 const WishLish = () => {
 
@@ -10,6 +12,28 @@ const WishLish = () => {
     {img:"", title:"", price:"", fit:"",},
     {img:"", title:"", price:"", fit:"",},
   ]
+  const [error, setError] = useState('');
+  const accessToken = Cookies.get('accessToken'); 
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('/users/WishListitem',{
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+          },
+        
+        });
+        console.log(response.data.data)
+        // setProducts(response.data.data);
+      } catch (error) {
+        console.error(error);
+        setError('An error occurred while fetching products.');
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <>
