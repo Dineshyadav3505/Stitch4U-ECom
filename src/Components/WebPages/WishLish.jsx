@@ -4,6 +4,7 @@ import axios from '../../utils/Axios'
 import Navbar from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
 import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux'
 
 const WishLish = () => {
 
@@ -24,7 +25,7 @@ const WishLish = () => {
           },
         
         });
-        console.log(response.data.data)
+        // useDispatch(response.data.data);
         // setProducts(response.data.data);
       } catch (error) {
         console.error(error);

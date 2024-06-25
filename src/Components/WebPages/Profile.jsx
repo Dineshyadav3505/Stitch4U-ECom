@@ -13,11 +13,11 @@ const Profile = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, reset} = useForm();
   const [error, setError] = useState('');
-  const [postion, setPosition] = useState("hidden");
+  const [postion, setPosition] = useState(false);
   const accessToken = Cookies.get('accessToken');
 
   const handleClick = () => {
-    setPosition("block");
+    setPosition(!postion);
   };
 
   const user = JSON.parse(localStorage.getItem('user'));
@@ -64,7 +64,7 @@ const Profile = () => {
 
           <form onSubmit={handleSubmit(update)}>
             <div className=" px-5 flex w-[100vw] flex-col justify-center items-center py-10 space-y-5 md:w-[100%] md:block rounded-md">
-                <div onClick={handleClick} className=" w-[100%] flex justify-end items-end">
+                <div onClick={handleClick} className=" w-[100%] flex justify-end items-end" >
                     <img className='' src="/img/edit.svg" alt="/" />
                 </div>
                 
@@ -95,11 +95,14 @@ const Profile = () => {
                 {...register('phoneNumber', { required: true })}
                 />
 
-                <Button
-                type="submit"
-                className={` bg-black text-white ${postion} w-60 h-8 md:h-10 md:w-96 text-xs rounded-md mx-auto`}
-                children="Update Profile"
-                />
+                {postion === true ? (
+                  <Button
+                  type="submit"
+                  className={` bg-black text-white ${postion} w-60 h-8 md:h-10 md:w-96 text-xs rounded-md mx-auto`}
+                  children="Update Profile"
+                  />
+                ) : null}
+                
             </div>
           </form>
         </div>

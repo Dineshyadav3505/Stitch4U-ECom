@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink,  useNavigate } from 'react-router-dom';
 import instance from '../../utils/Axios';
-
+import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const user = JSON.parse?.(localStorage.getItem('user'));
   const fullName = user?.fullName;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [filterOpen, setFilterOpen] = useState(false);
+
 
   const handleMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
+
+  const filterMenuToggle = () => {
+    setFilterOpen(!filterOpen);
+  }
   
   const cookie = document.cookie;
   const cookieObj = cookie.split(';').reduce((acc, curr) => {
@@ -104,6 +111,27 @@ const Navbar = () => {
 
         </div>
       </div>
+
+      {filterOpen === true ? (
+           <div className="fixed z-10 bottom-28 w-full bg-white border-t-[1px] border-black">
+           <div className="w-full py-5 px-5 flex justify-between items-center gap-2">
+             <h4 className="text-base capitalize">c</h4>
+             <img src="/img/downarrow.svg" alt="" />
+           </div>
+         </div>
+      )
+      : null}
+
+      {location.pathname === '/search' ?
+        <div onClick={filterMenuToggle} className="fixed z-10 bottom-16 w-full bg-white border-t-[1px] border-black">
+          <div className="w-full py-4 px-5 flex justify-center items-center gap-2">
+            <img src="/img/filter.svg" alt="" />
+            <h4 className="text-base capitalize">filter</h4>
+          </div>
+        </div>
+       : 
+        null
+      }
 
       <div className="fixed z-10 bottom-0 w-full h-16 px-6 flex justify-between items-center bg-[#FAF9F8] drop-shadow-[0_-35px_35px_rgba(0,0,0,0.3)] md:hidden">
                        <NavLink to="/">          <img className="w-6 mx-auto" src="/img/home.svg"  alt="" /><span className='text-xs text-block uppercase'>Home      </span> </NavLink>
