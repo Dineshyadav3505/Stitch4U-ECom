@@ -10,15 +10,30 @@ const Navbar = () => {
   const fullName = user?.fullName;
   const [menuOpen, setMenuOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
+  const [catergoryOpen, setCatergoryOpen] = useState(false);
+  const [sizeOpen, setSizeOpen] = useState(false);
+  const [priceOpen, setPriceOpen] = useState(false);
+  const [colourOpen, setColourOpen] = useState(false);
 
 
   const handleMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
-
   const filterMenuToggle = () => {
     setFilterOpen(!filterOpen);
-  }
+  };
+  const catergoryToggle = () =>{
+    setCatergoryOpen(!catergoryOpen)
+  };
+  const sizeToggle = () =>{
+    setSizeOpen(!sizeOpen);
+  };
+  const priceToggle = () =>{
+    setPriceOpen(!priceOpen);
+  };
+  const colourToggle = () =>{
+    setColourOpen(!colourOpen);
+  };
   
   const cookie = document.cookie;
   const cookieObj = cookie.split(';').reduce((acc, curr) => {
@@ -113,17 +128,40 @@ const Navbar = () => {
       </div>
 
       {filterOpen === true ? (
-           <div className="fixed z-10 bottom-28 w-full bg-white border-t-[1px] border-black">
-           <div className="w-full py-5 px-5 flex justify-between items-center gap-2">
-             <h4 className="text-base capitalize">c</h4>
-             <img src="/img/downarrow.svg" alt="" />
-           </div>
-         </div>
+        <div  className="fixed z-10 bottom-28 w-full bg-white border-t-[1px] border-black md:hidden">
+          <div onClick={catergoryToggle} className="w-full py-3 px-5 bg-black flex justify-between items-center gap-2">
+            <h4 className="text-base capitalize">catergory</h4>
+            <img src="/img/downarrow.svg" alt="" />
+          </div>
+          {catergoryToggle === true ?
+            <div className="h-44 overflow-auto">
+              <div className="">img</div>
+              <div className="">imc</div>
+              <div className="">imc</div>
+            </div>: null
+          }
+
+          <div onClick={sizeToggle} className="w-full py-3 px-5 flex justify-between items-center gap-2">
+            <h4 className="text-base capitalize">size</h4>
+            <img src="/img/downarrow.svg" alt="" />
+          </div>
+         
+          <div onClick={priceToggle} className="w-full py-3 px-5 flex justify-between items-center gap-2">
+            <h4 className="text-base capitalize">price</h4>
+            <img src="/img/downarrow.svg" alt="" />
+          </div>
+
+          <div onClick={colourToggle} className="w-full py-3 mb-4 px-5 flex justify-between items-center gap-2">
+            <h4 className="text-base capitalize"> colour</h4>
+            <img src="/img/downarrow.svg" alt="" />
+          </div>
+
+        </div>
       )
       : null}
 
       {location.pathname === '/search' ?
-        <div onClick={filterMenuToggle} className="fixed z-10 bottom-16 w-full bg-white border-t-[1px] border-black">
+        <div onClick={filterMenuToggle} className="fixed z-10 bottom-16 w-full md:hidden bg-white border-t-[1px] border-black">
           <div className="w-full py-4 px-5 flex justify-center items-center gap-2">
             <img src="/img/filter.svg" alt="" />
             <h4 className="text-base capitalize">filter</h4>
