@@ -16,7 +16,6 @@ const Singup = () => {
     const [passwordError, setPasswordError] = useState('')
     const [emailError, setEmailError] = useState("")
     const navigate = useNavigate()
-    const dispatch = useDispatch()
     const {register, handleSubmit} = useForm()
 
     const signup = async (data) => {

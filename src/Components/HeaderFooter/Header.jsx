@@ -71,7 +71,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center md:gap-5">
 
           {accessToken ? 
-          <NavLink to="/user"> 
+          <NavLink to="/profile"> 
             <img className="w-6 hidden md:block" src="/img/user.svg" alt="" />
           </NavLink> 
           :
@@ -110,7 +110,7 @@ const Navbar = () => {
                        <NavLink to="/new">       <img className="w-6 mx-auto" src="/img/new.svg"   alt="" /><span className='text-xs text-block uppercase'>New       </span> </NavLink>
                        <NavLink to="/wishlist">  <img className="w-6 mx-auto" src="/img/heart.svg" alt="" /><span className='text-xs text-block uppercase'>WishList  </span> </NavLink>
                        <NavLink to="/cart">      <img className="w-6 mx-auto" src="/img/cart.svg"  alt="" /><span className='text-xs text-block uppercase'>BAG       </span> </NavLink>
-        {accessToken ? <NavLink to="/user">      <img className="w-6 mx-auto" src="/img/user.svg"  alt="" /><span className='text-xs text-block uppercase'>Profile   </span> </NavLink> :<NavLink to="/logIn"> <img className="w-6 mx-auto" src="/img/user.svg" alt="" /><span className='text-xs text-block uppercase'>Login</span></NavLink> }
+        {accessToken ? <NavLink to="/profile">   <img className="w-6 mx-auto" src="/img/user.svg"  alt="" /><span className='text-xs text-block uppercase'>Profile   </span> </NavLink> :<NavLink to="/logIn"> <img className="w-6 mx-auto" src="/img/user.svg" alt="" /><span className='text-xs text-block uppercase'>Login</span></NavLink> }
       </div>
 
       <div

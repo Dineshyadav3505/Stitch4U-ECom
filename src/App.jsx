@@ -10,6 +10,7 @@ import Singup from './Components/WebPages/Singup'
 import CreateProduct from './Components/SellerPages/CreateProduct'
 import Auth from './utils/Auth'
 import New from './Components/WebPages/New'
+import Profile from './Components/WebPages/Profile'
 
 const App = () => {       
 
@@ -22,11 +23,15 @@ const App = () => {
         <Route path="/signUp" element={<Singup/>} />
         <Route path="/logIn" element={<LogIn/>} />
         <Route path="/search" element={<SearchPage/>} />
-        <Route path="/wishlist" element={<WishLish/>} />
-        <Route path="/cart" element={<Cart/>} />
+
         <Route path="/new" element={<New/>} />
 
-        {/* protected routes */}
+        {/* Protected user Routes  */}
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/wishlist" element={<WishLish/>} />
+        <Route path="/cart" element={<Cart/>} />
+
+        {/* protected Salesman routes */}
         <Route path="/salesman" element={<SellerHome/>}/>
         <Route path="/Seller/product" element={<CreateProduct/>}/>
         <Route path="/Seller/product/ijhfg" element={<Auth/>}/>
