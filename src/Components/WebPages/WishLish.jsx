@@ -14,14 +14,8 @@ const WishList = () => {
   const accessToken = Cookies.get('accessToken'); 
   const dispatch = useDispatch();
   const WishList = useSelector((state) => state.wishList.product)
-
-  const addToCart = () => {
-    console.log("first")
-  }
-
-  const addToWishList = (id) => {
-    console.log("second")
-  }
+  // const id = WishList.map((item) => item.productId._id)
+  // console.log(id)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -41,7 +35,7 @@ const WishList = () => {
     };
 
     fetchProducts();
-  }, [dispatch, accessToken]);
+  }, [dispatch,]);
 
   if(loading === true){
     return (
@@ -72,8 +66,9 @@ const WishList = () => {
                   price={item.productId.price}
                   heart={""}
                   cart={""}
-                  heartClick={addToWishList}
-                  cartClick={addToCart}
+                  accessToken={accessToken}
+                  heartClick={"removeToWishList"}
+                  cartClick={accessToken}
                 />
               ))}
             </div>
@@ -86,3 +81,6 @@ const WishList = () => {
 }
 
 export default WishList
+
+
+
