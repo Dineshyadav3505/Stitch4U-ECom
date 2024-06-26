@@ -4,25 +4,33 @@ import { NavLink } from 'react-router-dom'
 const Card = (
     {
         id,
-        img="https://www.snitch.co.in/cdn/shop/files/4MST2375-01-M24.jpg?v=1718775027&width=720",
-        colour= "Black",
-        price="1,699",
-        fit="Over size",
+        img,
+        name,
+        colour,
+        price,
+        heart,
+        heartClick,
+        cart,
+        cartClick,
     }
+
 ) => {
   return (
-    <NavLink to={`product/${id}`} className='h-72 w-36 '>
-        <div className="w-full h-52 overflow-hidden">
-            <img className='w-full h-full object-fill' src={`${img}`} alt="" />
+    <NavLink to={`product/${id}`} key={id} className='h-96 w-[48%] md:w-[25%] lg:w-[12%] flex my-2 flex-col rounded-md overflow-hidden'>
+        <div className="relative h-64 w-full rounded-md overflow-hidden ">
+        <img className='h-full w-full object-fill' src={img} alt="" />
+        <img onClick={()=>{heartClick}} className={`absolute top-2 right-2 w-6 ${heart} `} src="/img/heart.svg" alt="" />
         </div>
-        <div className="py-1 px-2">
-            <h3 className='text-black font-bol font-1 text-sm'>jet Black Jeans</h3>
-            <h3 className='text-black font-bol font-2 text-sm'> {`INR ${price}`}</h3>
-            <h3 className='text-black font-bol font-2 text-sm'>{`Colour : ${colour}`} </h3>
-            <h3 className='text-black font-bol font-2 text-sm'>{`${fit}`}</h3>
+        <div className=" px-2 pt-2">
+            <h3 className='text-black font-1 text-sm'>{name}</h3>
+            <h3 className='text-black font-2 text-sm'>{`INR ${price}`}</h3>
+            <h3 className='text-black fint-2 text-xs'>{`Colour : ${colour}`} </h3>
         </div>
-
-    </NavLink> 
+        <NavLink onClick={cartClick} className={`bg-black text-sm text-white flex items-center justify-center gap-2 py-2 mt-3 ${cart} `}> 
+        <img  src="/img/cartw.svg" alt="" />
+        Add
+        </NavLink>
+    </NavLink>
   )
 }
 

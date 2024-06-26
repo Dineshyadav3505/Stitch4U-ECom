@@ -5,12 +5,12 @@ import Footer from '../HeaderFooter/Footer';
 import { useSelector, useDispatch } from 'react-redux'
 import Card from '../Reuse_Component/ProductCard';
 import { setProducts } from '../../store/newSlice'
+import { NavLink } from'react-router-dom';
 
 const New = () => {
   const dispatch = useDispatch()
   const NewProduct = useSelector((state) => state.new.Products)
   const [loding, setLoading] = useState(true)
-  console.log(NewProduct);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -37,13 +37,13 @@ const New = () => {
       <div className="flex py-20 px-5 justify-between flex-wrap">
         {NewProduct.map((product) => (
           <Card
-          key={product._id}
-          id={product._id}
-          img={product.imageURL[0]}
-          colour={product.colour}
-          price={product.price}
-          orignalPrice={product.price}
-          fit={product.fit}
+            id={product._id}
+            img={product.imageURL[0]}
+            name={product.name}
+            colour={product.colour}
+            price={product.price}
+            heart={"hidden"}
+            cart={"hidden"}
           />
           
         ))}
