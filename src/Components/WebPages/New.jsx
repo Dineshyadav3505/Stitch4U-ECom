@@ -17,6 +17,7 @@ const New = () => {
       try {
         const response = await axios.get('/products');
         dispatch(setProducts(response.data.data))
+        console.log(response.data.data)
         setLoading(false)
       } catch (error) {
         console.error(error.response);
@@ -44,6 +45,7 @@ const New = () => {
             price={product.price}
             heart={"hidden"}
             cart={"hidden"}
+            quantityCard={"hidden"}
           />
           
         ))}
