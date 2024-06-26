@@ -26,6 +26,7 @@ const WishList = () => {
           },
         });
         dispatch(setWishList(response.data.data))
+        console.log(response.data.data)
         setLoading(false)
       } catch (error) {
         console.error(error);
@@ -39,12 +40,7 @@ const WishList = () => {
 
   if(loading === true){
     return (
-      <div className='flex flex-col items-center py-44 '>
-          <h6 className='text-black text-4xl font-semibold '>Favourites </h6>
-          <h6 className='text-black text-sm mt-10 font-semibold  '>SAVE YOUR FAVOURITE ITEMS </h6>
-          <h6 className='text-black text-sm mt-4 font-medium  '>Want to save the items that you love? Just click on the <br /> heart symbol beside the item and it will show up here. </h6>
-          <NavLink to="/" className='bg-black text-white mt-10 px-4 py-2 rounded-md'>SHOP NOW</NavLink>
-      </div>
+    <h1>loading ....</h1>
     )
   }
 
@@ -55,8 +51,8 @@ const WishList = () => {
           <div className="">
           <div className=" px-3 py-10 rounded-md ">
             <h5 className='text-base uppercase text-center text-black font-1 font-semibold'>favourites</h5>
-            <div className="flex gap-3 md:gap-12 lg:gap-16 py-3 flex-wrap">
-              {WishList?.map((item) => (
+            <div className="flex gap-3 md:gap-12 lg:gap-16 py-3 md:px-6 flex-wrap">
+              {WishList.length > 0 ? (WishList?.map((item) => (
                  <Card
                   key={item.productId._id}
                   id={item.productId._id}
@@ -67,10 +63,16 @@ const WishList = () => {
                   heart={""}
                   cart={""}
                   accessToken={accessToken}
-                  heartClick={"removeToWishList"}
-                  cartClick={accessToken}
+                  quantityCard={"hidden"}
                 />
-              ))}
+              ))):(
+                <div className='flex flex-col items-center py-4 '>
+                    <h6 className='text-black text-4xl font-semibold uppercase'>Favourites </h6>
+                    <h6 className='text-black text-sm mt-10 font-semibold  '>SAVE YOUR FAVOURITE ITEMS </h6>
+                    <h6 className='text-black text-sm mt-4 font-medium text-center '>Want to save the items that you love? Just click on the heart symbol beside the item and it will show up here. </h6>
+                    <NavLink to="/" className='bg-black text-white mt-10 px-4 py-2 rounded-md'>SHOP NOW</NavLink>
+                </div>
+              )}
             </div>
           </div>
           </div>
