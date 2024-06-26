@@ -9,7 +9,7 @@ export const wishListSlice = createSlice({
     initialState,
     reducers: {
         setWishList: (state, action) => {
-            state.product = action.payload;
+        state.product = action.payload;
         },
     },
 });
