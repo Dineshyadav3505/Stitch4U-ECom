@@ -11,6 +11,7 @@ import CreateProduct from './Components/SellerPages/CreateProduct'
 import Auth from './utils/Auth'
 import New from './Components/WebPages/New'
 import Profile from './Components/WebPages/Profile'
+import Product from './Components/WebPages/Product'
 
 const App = () => {       
 
@@ -25,6 +26,9 @@ const App = () => {
         <Route path="/search" element={<SearchPage/>} />
 
         <Route path="/new" element={<New/>} />
+        <Route path="/new/product/:id" element={<Product/>} />
+        <Route path="/cart/product/:id" element={<Product/>} />
+        <Route path="/wishlist/product/:id" element={<Product/>} />
 
         {/* Protected user Routes  */}
         <Route path="/profile" element={<Profile/>}/>
