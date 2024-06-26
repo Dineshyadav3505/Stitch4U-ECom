@@ -129,38 +129,144 @@ const Navbar = () => {
 
       {filterOpen === true ? (
         <div  className="fixed z-10 bottom-28 w-full bg-white border-t-[1px] border-black md:hidden">
-          <div onClick={catergoryToggle} className="w-full py-3 px-5 bg-black flex justify-between items-center gap-2">
+          {/* catergory Toggle Button */}
+          <div onClick={catergoryToggle} className="w-full py-3 px-5 flex justify-between items-center gap-2">
             <h4 className="text-base capitalize">catergory</h4>
             <img src="/img/downarrow.svg" alt="" />
           </div>
-          {catergoryToggle === true ?
-            <div className="h-44 overflow-auto">
-              <div className="">img</div>
-              <div className="">imc</div>
-              <div className="">imc</div>
-            </div>: null
-          }
-
+          {catergoryOpen === true ? (<div className="px-6 h-28 overflow-auto">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="jeans" />
+              <label htmlFor="jeans" className="text-base">Jeans</label>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="shirt" />
+              <label htmlFor="shirt" className="text-base">Shirt</label>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="t-shirt" />
+              <label htmlFor="t-shirt" className="text-base">T-Shirt</label>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="kurta" />
+              <label htmlFor="kurta" className="text-base">Kurta</label>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="trousers" />
+              <label htmlFor="trousers" className="text-base">Trousers</label>
+            </div>
+          </div>
+          </div>) : null }
+           
+          {/* Size Toggle Button */}
           <div onClick={sizeToggle} className="w-full py-3 px-5 flex justify-between items-center gap-2">
             <h4 className="text-base capitalize">size</h4>
-            <img src="/img/downarrow.svg" alt="" />
+            <img src="/img/downarrow.svg" alt=""/>
           </div>
+          {sizeOpen === true ? (<div className="px-6 h-28 overflow-auto">
+            <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="xs" />
+              <label htmlFor="xs" className="text-base">XS</label>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="s" />
+              <label htmlFor="s" className="text-base">S</label>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="m" />
+              <label htmlFor="m" className="text-base">M</label>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="l" />
+              <label htmlFor="l" className="text-base">L</label>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="xl" />
+              <label htmlFor="xl" className="text-base">XL</label>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="xxl" />
+              <label htmlFor="xxl" className="text-base">XXL</label>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="xxxl" />
+              <label htmlFor="xxxl" className="text-base">XXXL</label>
+            </div>
+          </div>
+          </div>
+          ): null}
          
+          {/* Price Toggle Button */}
           <div onClick={priceToggle} className="w-full py-3 px-5 flex justify-between items-center gap-2">
             <h4 className="text-base capitalize">price</h4>
             <img src="/img/downarrow.svg" alt="" />
           </div>
+          {priceOpen === true ? (
+            <div className="h- h-28"></div>
+          ): null}
 
-          <div onClick={colourToggle} className="w-full py-3 mb-4 px-5 flex justify-between items-center gap-2">
+            {/* colour toggle Button */}
+          <div onClick={colourToggle} className="w-full py-3 px-5 flex justify-between items-center gap-2">
             <h4 className="text-base capitalize"> colour</h4>
             <img src="/img/downarrow.svg" alt="" />
           </div>
+          {colourOpen === true ? (
+            <div className="px-6 mb-5 h-28 overflow-auto">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="color-red" />
+              <label for="color-red" class="text-base text-red-500">Red</label>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="color-orange" />
+              <label for="color-orange" class="text-base text-orange-500">Orange</label>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="color-yellow" />
+              <label for="color-yellow" class="text-base text-yellow-500">Yellow</label>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="color-green" />
+              <label for="color-green" class="text-base text-green-500">Green</label>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="color-blue" />
+              <label for="color-blue" class="text-base text-blue-500">Blue</label>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="color-indigo" />
+              <label for="color-indigo" class="text-base text-indigo-500">Indigo</label>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="color-violet" />
+              <label for="color-violet" class="text-base text-violet-500">Violet</label>
+            </div>
+
+          </div>
+          ) : null}
 
         </div>
       )
       : null}
 
-      {location.pathname === '/search' ?
+      {/* {location.pathname === '/search' ?
         <div onClick={filterMenuToggle} className="fixed z-10 bottom-16 w-full md:hidden bg-white border-t-[1px] border-black">
           <div className="w-full py-4 px-5 flex justify-center items-center gap-2">
             <img src="/img/filter.svg" alt="" />
@@ -169,7 +275,7 @@ const Navbar = () => {
         </div>
        : 
         null
-      }
+      } */}
 
       <div className="fixed z-10 bottom-0 w-full h-16 px-6 flex justify-between items-center bg-[#FAF9F8] drop-shadow-[0_-35px_35px_rgba(0,0,0,0.3)] md:hidden">
                        <NavLink to="/">          <img className="w-6 mx-auto" src="/img/home.svg"  alt="" /><span className='text-xs text-block uppercase'>Home      </span> </NavLink>

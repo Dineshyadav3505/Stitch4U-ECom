@@ -42,6 +42,8 @@ const SearchPage = () => {
           <NavLink to="/" className="hover:text-zinc-200 hidden md:block"><img src="/img/close.svg" alt="" /></NavLink>
         </div>
 
+        
+
         {searchResults.length >= 1 ? (
           <div className="h-full">
             <div className=" px-3 py-10 rounded-md ">
