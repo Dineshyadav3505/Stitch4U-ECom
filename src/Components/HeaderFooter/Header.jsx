@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { NavLink,  useNavigate } from 'react-router-dom';
 import instance from '../../utils/Axios';
 import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setProducts } from '../../store/newSlice'
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ const Navbar = () => {
   const [sizeOpen, setSizeOpen] = useState(false);
   const [priceOpen, setPriceOpen] = useState(false);
   const [colourOpen, setColourOpen] = useState(false);
+  const dispatch = useDispatch();
 
 
   const handleMenuToggle = () => {
@@ -54,6 +57,7 @@ const Navbar = () => {
         localStorage.removeItem('user');
         document.cookie = 'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
         localStorage.removeItem('accessToken');
+        dispatch(setProducts(""))
         navigate('/')
       } else {
         console.error('Error logging out: No access token found');

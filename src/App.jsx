@@ -12,9 +12,9 @@ import Auth from './utils/Auth'
 import New from './Components/WebPages/New'
 import Profile from './Components/WebPages/Profile'
 import Product from './Components/WebPages/Product'
+import Cookies from 'js-cookie'
 
 const App = () => {       
-
 
   return (
     <div className='w-full min-h-screen'>
@@ -27,6 +27,8 @@ const App = () => {
 
         <Route path="/new" element={<New/>} />
         <Route path="/new/product/:id" element={<Product/>} />
+
+        
         <Route path="/cart/product/:id" element={<Product/>} />
         <Route path="/wishlist/product/:id" element={<Product/>} />
 
