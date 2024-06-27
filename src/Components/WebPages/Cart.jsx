@@ -11,20 +11,6 @@ import Card from '../Reuse_Component/ProductCard';
 
 const Cart = () => {
 
-  const [error, setError] = useState('');
-  const accessToken = Cookies.get('accessToken'); 
-  const dispatch = useDispatch();
-  const Cart = useSelector((state) => state.cart.product)
-  const total = Cart.map((item)=>{
-    return item.productId.price 
-  })
-  let sum = 0;
-  for (let i = 0; i < total.length; i++) {
-    sum += total[i];
-  }
-  const totalPrice = sum
-
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -34,6 +20,7 @@ const Cart = () => {
           }, 
         });
         dispatch(setCart(response.data.data))
+        console.log(response.data.data)
 
       } catch (error) {
         console.error(error);
@@ -44,6 +31,36 @@ const Cart = () => {
     fetchProducts();
   }, []);
 
+  const accessToken = Cookies.get('accessToken'); 
+  const dispatch = useDispatch();
+  const Cart = useSelector((state) => state.cart.product)
+
+  const total = Cart.map((item)=>{
+    return item.productId.price 
+  })
+  let sum = 0;
+  for (let i = 0; i < total.length; i++) {
+    sum += total[i];
+  }
+  const totalPrice = sum
+
+  const deltetItem = async () => {
+    try {
+      console.log(id)
+      console.log(accessToken)
+      const response = await axios.delete(`/users/detetTocart/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+
   return (
     <>
     <Navbar/>
@@ -51,28 +68,24 @@ const Cart = () => {
       <div className='w-[100%] lg:min-w-[80%] bg-[#FAF9F8] pt-16 '>
             <div className="">
             <div className=" px-3 py-10 rounded-md ">
-              <h5 className='text-base uppercase text-center text-black font-1 font-semibold'>favourites</h5>
+              <h5 className='text-base uppercase text-center font-1 font-semibold'>Shoppng bag</h5>
               <div className="flex gap-3 md:gap-12 lg:gap-16 py-3 md:px-6 flex-wrap">
                 {Cart.length > 0 ? (
                   Cart.map((item) => (
-                    <Card
-                      key={item.productId._id}
-                      id={item.productId._id}
-                      img={item.productId.imageURL[0]}
-                      name={item.productId.name}
-                      colour={item.productId.colour}
-                      price={item.productId.price}
-                      heart={"hidden"}
-                      cart={"hidden"}
-                      accessToken={accessToken}
-                      heartClick={"removeToWishList"}
-                      cartClick={accessToken}
-                      size={item.productId.size[0]}
-                      quantityCard={""}
-                      add={"increase"}
-                      minus={"decrease"}
-
-                    />
+                    <div className="h-48 w-full flex p-3 relative ">
+                      <img onClick={deltetItem} className='h-6 w-6 absolute top-3  right-3' src="/img/delete.svg" alt="" />
+                      <NavLink to={`product/${item.productId._id}`} className="w-[34%] h-full bg-black">
+                        <img src={item.productId.imageURL[0]} alt="" />
+                      </NavLink>
+                      <div className="px-4 py-2 space-y-2">
+                        <h6 className='text-blacl text-sm mt-2'>Stitch4U</h6>
+                        <h6 className='text-blacl text-sm '>{item.productId.name}</h6>
+                        <h6 className='text-blacl text-sm '>₹ {item.productId.price}</h6>
+                        <h6 className='text-blacl text-sm '>Size : {item.productId.size}</h6>
+                        <h6 className='text-blacl text-sm '>quantity : {item.quantity}</h6>
+                        <h6 className='text-blacl text-sm '>${item.productId.price * item.quantity}</h6>
+                      </div>
+                    </div>
                   ))
                 ) : (
                   <div className='flex flex-col items-center py-4 '>
