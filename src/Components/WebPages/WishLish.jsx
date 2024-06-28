@@ -26,7 +26,7 @@ const WishList = () => {
           },
         });
         dispatch(setWishList(response.data.data))
-        console.log(response.data.data)
+        // console.log(response.data.data)
         setLoading(false)
       } catch (error) {
         console.error(error);
