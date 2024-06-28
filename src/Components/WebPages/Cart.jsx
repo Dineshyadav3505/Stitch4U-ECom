@@ -88,7 +88,7 @@ const Cart = () => {
                     </div>
                   ))
                 ) : (
-                  <div className='flex flex-col items-center py-4 '>
+                  <div className='flex flex-col items-center mx-auto py-4 '>
                     <h6 className='text-black text-4xl font-semibold uppercase'>Shopping Bag</h6>
                     <h6 className='text-black text-sm mt-10 font-semibold uppercase '>Your Shopping Bag is empty! </h6>
                     <h6 className='text-black text-sm mt-4 font-medium text-center '>

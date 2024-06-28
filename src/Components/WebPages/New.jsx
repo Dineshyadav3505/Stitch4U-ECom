@@ -6,7 +6,6 @@ import Cookies from 'js-cookie';
 import { useSelector, useDispatch } from 'react-redux'
 import Card from '../Reuse_Component/ProductCard';
 import { setProducts } from '../../store/newSlice'
-import { NavLink } from'react-router-dom';
 
 const New = () => {
   const dispatch = useDispatch()
@@ -17,7 +16,7 @@ const New = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('/products');
+        const response = await axios.get('/new');
         dispatch(setProducts(response.data.data))
         console.log(response.data.data)
         setLoading(false)
@@ -40,12 +39,12 @@ const New = () => {
       <div className="flex py-20 px-5 justify-between flex-wrap">
         {NewProduct?.map((product) => (
           <Card
-            id={product._id}
-            img={product.imageURL[0]}
-            name={product.name}
-            colour={product.colour}
-            price={product.price}
-            size={product.size}
+            id={product.productId._id}
+            img={product.productId.imageURL[0]}
+            name={product.productId.name}
+            colour={product.productId.colour}
+            price={product.productId.price}
+            size={product.productId.size}
             heartadd={"hidden"}
             heartminus={"block"}
             cart={"hidden"}
