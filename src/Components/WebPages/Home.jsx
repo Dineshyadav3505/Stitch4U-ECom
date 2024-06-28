@@ -7,6 +7,8 @@ import axios from '../../utils/Axios';
 import { useSelector, useDispatch } from'react-redux'
 import {setBestSellerProducts, setSwiperImg, setNewArrivedProducts} from '../../store/homeSlice'
 import Swiper from '../Reuse_Component/Swiper';
+import HomeCart from '../Reuse_Component/HomeCart';
+import HomeCartBest from '../Reuse_Component/HomeCartBest';
 
 
 
@@ -57,19 +59,26 @@ const Home = () => {
   if(loding === true){
     return <h1>Loading...</h1>
   }
+  
 
   return (
-    <>
+    <div className='space-y-2'>
     <Navbar/>
     <div className="flex flex-col pt-16">
       <Swiper/>
 
       <CategoryCardSmall/>
+
+      <HomeCart/>
+
+      <HomeCartBest/>
+      
+
    
 
     </div>
     <Footer/>
-    </>
+    </div>
   )
 }
 
