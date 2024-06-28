@@ -85,7 +85,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed z-10 w-full h-16 px-4 md:px-8 flex justify-between items-center bg-[#FAF9F8] shadow-xl">
+      <div className="fixed z-10 top-0 w-full h-16 px-4 md:px-8 flex justify-between items-center bg-[#FAF9F8] shadow-xl">
         <NavLink onClick={handleMenuToggle} className="hover:text-zinc-200">
           <img className="w-6" src="/img/Menu.svg" alt="" />
         </NavLink>
