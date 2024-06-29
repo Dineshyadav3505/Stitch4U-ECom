@@ -3,6 +3,7 @@ import React from 'react'
 const CategoryCardSmall = () => {
   
   return (
+    <>
     <div className="overflow-x-scroll px-5">
         <div className="h-48 md:h-56 flex gap-3 w-full">
             <div className="h-full min-w-28 inline-block select-none">
@@ -16,6 +17,7 @@ const CategoryCardSmall = () => {
             </div>
         </div>
     </div>
+    </>
   )
 }
 
