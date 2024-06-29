@@ -7,8 +7,9 @@ import axios from '../../utils/Axios';
 import { useSelector, useDispatch } from'react-redux'
 import {setBestSellerProducts, setSwiperImg, setNewArrivedProducts} from '../../store/homeSlice'
 import Swiper from '../Reuse_Component/Swiper';
-import HomeCart from '../Reuse_Component/HomeCart';
+import HomeCartArival from '../Reuse_Component/HomeCartArival';
 import HomeCartBest from '../Reuse_Component/HomeCartBest';
+import CategoryCard from '../Reuse_Component/CategoryCard';
 
 
 
@@ -69,12 +70,11 @@ const Home = () => {
 
       <CategoryCardSmall/>
 
-      <HomeCart/>
+      <HomeCartArival/>
+      <CategoryCard/>
 
       <HomeCartBest/>
       
-
-   
 
     </div>
     <Footer/>

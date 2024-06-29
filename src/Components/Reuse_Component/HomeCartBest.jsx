@@ -10,7 +10,6 @@ const homeCart = ({title}
 
   const  NewProduct = useSelector(state => state.home.bestSellerProducts)
   const accessToken = Cookies.get('accessToken'); 
-  console.log(NewProduct)
   return (
     <>
     {NewProduct?.length > 0 ? (

@@ -29,16 +29,24 @@ const New = () => {
     fetchProducts();
   }, []);
 
-  const products = useSelector(state => state.products);
+  
+  const handleAddToWishList = () => {
+    setAddToWishList(true);
+    console.log(addToWishList)
+    setTimeout(() => {
+      setAddToWishList(false);
+    }, 3000);
+  }
 
   if(loding === true){
     return <h1>Loading...</h1>
   }
 
+
   return (
     <>
       <Navbar />
-      <div className="flex py-20 px-5 justify-between flex-wrap relative">
+      <div className="flex py-20 px-4 gap-3 flex-wrap  relative">
         {addToWishList===true ? <h1 className='absolute left-1/2 -translate-x-1/2  z-20 bg-black rounded text-sm text-white px-4 py-1 w-1/2 text-center'>Added to WishList</h1> : null}
         {NewProduct?.map((product) => (
           <Card
@@ -50,13 +58,12 @@ const New = () => {
             size={product.productId.size}
             heartadd={"hidden"}
             heartminus={"block"}
-            colourCard={"hidden"}
+            colourCard={""}
             cart={"hidden"}
             accessToken={accessToken}
             quantityCard={"hidden"}
             newitem={"block"}
             height={""}
-
           />
           
         ))}
@@ -66,4 +73,5 @@ const New = () => {
   )
 }
 
-export default New
+
+export default New;
