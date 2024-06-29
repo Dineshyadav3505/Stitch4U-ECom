@@ -20,7 +20,7 @@ const New = () => {
       try {
         const response = await axios.get('/new');
         dispatch(setProducts(response.data.data))
-        // console.log(response.data.data)
+
         setLoading(false)
       } catch (error) {
         console.error(error.response);
@@ -50,6 +50,7 @@ const New = () => {
         {addToWishList===true ? <h1 className='absolute left-1/2 -translate-x-1/2  z-20 bg-black rounded text-sm text-white px-4 py-1 w-1/2 text-center'>Added to WishList</h1> : null}
         {NewProduct?.map((product) => (
           <Card
+            key={product._id}
             id={product.productId._id}
             img={product.productId.imageURL[0]}
             name={product.productId.name}

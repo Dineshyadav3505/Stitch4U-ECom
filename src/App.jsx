@@ -29,13 +29,14 @@ const App = () => {
         <Route path="/new/product/:id" element={<Product/>} />
 
         
+        <Route path="/product/:id" element={<Product/>} />
         <Route path="/cart/product/:id" element={<Product/>} />
         <Route path="/wishlist/product/:id" element={<Product/>} />
 
         {/* Protected user Routes  */}
+        <Route path="/cart" element={<Cart/>} />
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/wishlist" element={<WishLish/>} />
-        <Route path="/cart" element={<Cart/>} />
 
         {/* protected Salesman routes */}
         <Route path="/salesman" element={<SellerHome/>}/>

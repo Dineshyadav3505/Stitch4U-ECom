@@ -67,15 +67,10 @@ const Home = () => {
     <Navbar/>
     <div className="flex flex-col pt-16">
       <Swiper/>
-
       <CategoryCardSmall/>
-
       <HomeCartArival/>
       <CategoryCard/>
-
       <HomeCartBest/>
-      
-
     </div>
     <Footer/>
     </div>

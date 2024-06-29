@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, } from 'react-router-dom'
 import axios from '../../utils/Axios'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { removeProduct } from '../../store/cartSlice';
-// import {onAddToWishList} from '../WebPages/New'
+import { removeProduct } from '../../store/WishList';
 
 const Card = ({
   id,
@@ -22,6 +21,8 @@ const Card = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  
   
 
   const removeToWishList = async () => {
@@ -31,7 +32,7 @@ const Card = ({
           'Authorization': `Bearer ${accessToken}`,
         },
       });
-      onAddToWishList();
+      dispatch(removeProduct(id));
     } catch (error) {
       console.error(error.response.data.message);
     }
@@ -57,7 +58,6 @@ const Card = ({
           'Authorization': `Bearer ${accessToken}`,
         },
       });
-      dispatch(removeProduct({id}));
 
     } catch (error) {
       console.error(error.response.data.message);
@@ -65,6 +65,7 @@ const Card = ({
       }
     }
   }
+  
 
   return (
     <div className={`h-96 w-[44vw]  md:w-[30vw] lg:w-52 flex relative`}>

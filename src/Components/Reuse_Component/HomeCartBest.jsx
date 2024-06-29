@@ -4,7 +4,7 @@ import Card from './ProductCard'
 import Cookies from 'js-cookie'
 import { NavLink } from 'react-router-dom'
 
-const homeCart = ({title}
+const homeCartBest = ({title}
 ) => {
 
 
@@ -19,6 +19,7 @@ const homeCart = ({title}
         <div className="py-1 flex gap-4">
             {NewProduct?.map((product) => (
             <Card
+                key={product._id}
                 id={product.productId._id}
                 img={product.productId.imageURL[0]}
                 name={product.productId.name}
@@ -42,4 +43,4 @@ const homeCart = ({title}
   )
 }
 
-export default homeCart
+export default homeCartBest
