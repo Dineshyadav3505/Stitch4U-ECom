@@ -26,10 +26,7 @@ const SearchPage = () => {
       try {
         const response = await axios.get('/products', {
           params: {
-            search: debouncedSearchTerm,
-          },
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
+            type: debouncedSearchTerm,
           },
         });
         dispatch(setSearch(response.data.data));

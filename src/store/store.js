@@ -5,6 +5,7 @@ import newReducer from './newSlice';
 import cartReducer from './cartSlice';
 import homeReducer from './homeSlice';
 import searchReducer from './searchSlice';
+import CatagoreyCartReducer from './CatagoreyCartSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     cart: cartReducer,
     home:homeReducer,
     search: searchReducer,
+    catagoreyCart: CatagoreyCartReducer,
     
   },
 });
