@@ -96,17 +96,16 @@ const Navbar = () => {
 
         <div className="flex justify-between items-center md:gap-5">
 
-          {accessToken ? 
-          <NavLink to="/profile"> 
-            <img className="w-6 hidden md:block" src="/img/user.svg" alt="" />
-          </NavLink> 
-          :
-          <NavLink to="/logIn" > 
-            <img className="w-6 hidden md:block" src="/img/userlogin.svg" alt="" />
-          </NavLink> }
-
-          <NavLink to="/search">
+        <NavLink to="/search">
             <img className="w-6" src="/img/Search.svg" alt="" />
+          </NavLink>
+
+         <NavLink to="/">
+            <img className="w-6 hidden md:block" src="/img/home.svg" alt="" />
+          </NavLink>
+
+          <NavLink to="/new">
+            <img className="w-6 hidden md:block" src="/img/new.svg" alt="" />
           </NavLink>
 
           {accessToken ? 
@@ -127,6 +126,15 @@ const Navbar = () => {
           <NavLink to="/login">
             <img className="w-6 hidden md:block" src="/img/cart.svg" alt="" />
           </NavLink>}
+
+          {accessToken ? 
+          <NavLink to="/profile"> 
+            <img className="w-6 hidden md:block" src="/img/user.svg" alt="" />
+          </NavLink> 
+          :
+          <NavLink to="/logIn" > 
+            <img className="w-6 hidden md:block" src="/img/userlogin.svg" alt="" />
+          </NavLink> }
 
         </div>
       </div>
