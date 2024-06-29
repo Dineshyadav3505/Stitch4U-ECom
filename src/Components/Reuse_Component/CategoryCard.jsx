@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import {setCatahoreyCart} from '../../store/CatagoreyCartSlice'
 
 const CategoryCard = () => {
 
     const data= [
-        {img:"/img/crochet.webp",name:"Crochet Shirt",link:'chach'},
-        {img:"/img/polo.webp",name:" polos",link:'chachi'},
-        {img:"/img/tshirt.jpeg",name:" t-shirts",link:'nana'},
-        {img:"/img/linen.jpeg",name:" Breezy Linen",link:'nani'},
+        {img:"/img/crochet.webp",name:"Crochet Shirt",link:'Crochet shirt'},
+        {img:"/img/polo.webp",name:" polos",link:'polo T-Shirt'},
+        {img:"/img/tshirt.jpeg",name:" t-shirts",link:'t-shirt'},
+        {img:"/img/linen.jpeg",name:" Breezy Linen",link:'linen'},
     ]
 
+   
   return (
 
     <div className=" py-4">

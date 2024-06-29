@@ -13,6 +13,7 @@ import New from './Components/WebPages/New'
 import Profile from './Components/WebPages/Profile'
 import Product from './Components/WebPages/Product'
 import Cookies from 'js-cookie'
+import CatagoreyCart from './Components/WebPages/CatagoreyCart'
 
 const App = () => {       
 
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/new/product/:id" element={<Product/>} />
 
         
+        <Route path="/product/:type" element={<CatagoreyCart/>} />
         <Route path="/product/:id" element={<Product/>} />
         <Route path="/cart/product/:id" element={<Product/>} />
         <Route path="/wishlist/product/:id" element={<Product/>} />
