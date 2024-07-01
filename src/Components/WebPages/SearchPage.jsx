@@ -16,24 +16,33 @@ const SearchPage = () => {
   const accessToken = Cookies.get('accessToken');
   const dispatch = useDispatch();
 
-  const [debouncedSearchTerm] = useDebounce(searchTerm, 500); // 500ms delay
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 1000); // 500ms delay
 
   const product = useSelector((state) => state.search.product);
-  console.log(product);
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter') {
+      fetchProducts();
+    } else {
+      setSearchTerm(e.target.value);
+    }
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        setLoading(true);
         const response = await axios.get('/products', {
           params: {
-            type: debouncedSearchTerm,
-          },
+            search: debouncedSearchTerm
+          }
         });
         dispatch(setSearch(response.data.data));
         setLoading(false);
       } catch (error) {
         console.log(error.response.data);
         setError('An error occurred while fetching products.');
+        setLoading(false);
       }
     };
 
@@ -42,9 +51,7 @@ const SearchPage = () => {
     }
   }, [debouncedSearchTerm, accessToken, dispatch]);
 
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-  };
+
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -78,8 +85,8 @@ const SearchPage = () => {
                 key={product._id}
                 id={product._id}
                 img={product.imageURL[0]}
-                name={product.name}
-                colour={product.colour}
+                name={product.productName}
+                colour={product.color}
                 price={product.price}
                 size={product.size}
                 heartadd={"hidden"}

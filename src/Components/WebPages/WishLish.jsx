@@ -43,21 +43,24 @@ const WishList = () => {
     )
   }
 
+
+
   return (
+
     <>
     <Navbar/>
     <div className='w-full bg-[#FAF9F8] pt-16 '>
           <div className="">
           <div className=" px-3 py-10 rounded-md ">
             <h5 className='text-base uppercase text-center text-black font-1 font-semibold'>favourites</h5>
-            <div className="flex gap-3 md:gap-12 lg:gap-16 py-3 md:px-6 flex-wrap">
-              {WishList.length > 0 ? (WishList?.map((item) => (
+            <div className="flex justify-around flex-wrap">
+              {WishList?.length > 0 ? (WishList?.map((item) => (
                  <Card
                   key={item.productId._id}
                   id={item.productId._id}
                   img={item.productId.imageURL[0]}
-                  name={item.productId.name}
-                  colour={item.productId.colour}
+                  name={item.productId.productName}
+                  colour={item.productId.color}
                   price={item.productId.price}
                   heart={""}
                   cart={""}
@@ -65,6 +68,7 @@ const WishList = () => {
                   heartminus={"hidden"}
                   accessToken={accessToken}
                   quantityCard={"hidden"}
+                  colourCard={"hidden"}
                 />
               ))):(
                 <div className='flex flex-col items-center mx-auto py-4 '>
