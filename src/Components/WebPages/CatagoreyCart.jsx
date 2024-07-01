@@ -13,19 +13,14 @@ const CatagoreyCart = () => {
     const [loding, setLoading] = useState(true)
     const accessToken = localStorage.getItem('accessToken');
     const { type } = useParams();
-    console.log(type);
 
     useEffect(() => {
         const fetchProducts = async () => {
           try {
-            const response = await axios.get('/products', {
-                params: {
-                  type: type,
-                },
+            const response = await axios.get(`/products/type/${type}`, {
             });
             dispatch(setCatahoreyCart(response.data.data))
             setLoading(false)
-            console.log(response.data.data)
           } catch (error) {
             console.error(error.response);
           }
@@ -38,16 +33,15 @@ const CatagoreyCart = () => {
   return (
     <>
     <Navbar/>
-
     {catagoryCart.length > 0 ? (
-        <div className="py-20 px-5">
+        <div className="py-20 px-[4vw] flex justify-around flex-wrap">
             {catagoryCart?.map((product) => (
                 <Card
                 key={product._id}
                 id={product._id}
                 img={product.imageURL[0]}
-                name={product.name}
-                colour={product.colour}
+                name={product.productName}
+                colour={product.color}
                 price={product.price}
                 size={product.size}
                 heartadd={"hidden"}

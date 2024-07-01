@@ -63,7 +63,7 @@ const Home = () => {
   
 
   return (
-    <div className='space-y-2'>
+    <>
     <Navbar/>
     <div className="flex flex-col pt-16">
       <Swiper/>
@@ -72,8 +72,8 @@ const Home = () => {
       <CategoryCard/>
       <HomeCartBest/>
     </div>
-    <Footer/>
-    </div>
+    <Footer/>          
+    </>
   )
 }
 
