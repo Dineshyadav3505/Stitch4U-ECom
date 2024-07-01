@@ -22,8 +22,8 @@ const homeCart = () => {
                 key={product._id}
                 id={product.productId._id}
                 img={product.productId.imageURL[0]}
-                name={product.productId.name}
-                colour={product.productId.colour}
+                name={product.productId.productName}
+                colour={product.productId.color}
                 price={product.productId.price}
                 size={product.productId.size}
                 heartadd={"hidden"}
@@ -32,7 +32,7 @@ const homeCart = () => {
                 accessToken={accessToken}
                 quantityCard={"hidden"}
                 newitem={"hidden"}
-                colourCard={"hidden"}
+                colourCard={"block"}
             />
             ))}
         </div>
