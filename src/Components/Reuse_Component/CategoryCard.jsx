@@ -6,9 +6,9 @@ const CategoryCard = () => {
 
     const data= [
         {img:"/img/crochet.webp",name:"Crochet Shirt",link:'Crochet shirt'},
-        {img:"/img/polo.webp",name:" polos",link:'polo T-Shirt'},
+        {img:"/img/polo.webp",name:" polos",link:'polo'},
         {img:"/img/tshirt.jpeg",name:" t-shirts",link:'t-shirt'},
-        {img:"/img/linen.jpeg",name:" Breezy Linen",link:'linen'},
+        {img:"/img/linen.jpeg",name:" Breezy Linen",link:'Breezy Linen'},
     ]
 
    

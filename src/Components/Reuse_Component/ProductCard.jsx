@@ -18,12 +18,11 @@ const Card = ({
   colourCard,
   newitem="hidden",
 
+
+
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  
-  
 
   const removeToWishList = async () => {
     try {
@@ -40,12 +39,13 @@ const Card = ({
 
   const addToWishList = async () => {
     try {
+      
       const response = await axios.post(`/users/addToWishList/${id}`, {}, {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
         },
-
       });
+      // console.log(id)
     } catch (error) {
       console.error(error.response.data.message);
     }
@@ -68,7 +68,7 @@ const Card = ({
   
 
   return (
-    <div className={`h-96 w-[44vw]  md:w-[30vw] lg:w-52 flex relative`}>
+    <div className={`h-96 w-[43vw]  md:w-48 lg:w-52 flex relative`}>
       <div className={`absolute top-5 left-0 ${newitem}`}> <p className=' text-xs px-2 bg-black text-red-600'>new </p> </div>
       <div onClick={removeToWishList} className={`absolute top-5 right-2 md:right-5 lg:right-3 w-6 h-6 ${heartadd}`}> <img src="/img/heart.svg" alt="" /> </div>
       <div onClick={addToWishList} className={`absolute top-5 right-2 md:right-5 lg:right-3 w-6 h-6 ${heartminus}`}> <img src="/img/heart.svg" alt="" /> </div>
