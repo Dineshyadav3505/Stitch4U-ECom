@@ -4,16 +4,16 @@ import { NavLink } from 'react-router-dom'
 const CategoryCardSmall = () => {
 
   const data= [
-    {img:"/img/shirt.png",name:"Shirt",link:'/product/shirt'},
-    {img:"/img/t-shirt.png",name:" t-shirts",link:'/product/t-shirt'},
-    {img:"/img/trousers.png",name:"trousers",link:'/product/trousers'},
-    {img:"/img/jeans.png",name:"jeans",link:'/product/jeans'},
-    {img:"/img/suits & blazers.png",name:"suits & blazers",link:'/product/suits & blazers'},
-    {img:"/img/jackets.png",name:"jackets",link:'/product/jackets'},
-    {img:"/img/cargo.png",name:"cargos",link:'/product/cargo'},
-    {img:"/img/shorts.png",name:"shorts",link:'/product/shorts'},
-    {img:"/img/hoodies.png",name:"hoodies",link:'/product/hoodies'},
-    {img:"/img/sweaters.png",name:"sweaters",link:'/product/sweaters'},
+    {img:"/img/shirt.png",name:"Shirt",link:'/products/shirt'},
+    {img:"/img/t-shirt.png",name:" t-shirts",link:'/products/t-shirt'},
+    {img:"/img/trousers.png",name:"trousers",link:'/products/trousers'},
+    {img:"/img/jeans.png",name:"jeans",link:'/products/jeans'},
+    {img:"/img/suits & blazers.png",name:"suits & blazers",link:'/products/suits & blazers'},
+    {img:"/img/jackets.png",name:"jackets",link:'/products/jackets'},
+    {img:"/img/cargo.png",name:"cargos",link:'/products/cargo'},
+    {img:"/img/shorts.png",name:"shorts",link:'/products/shorts'},
+    {img:"/img/hoodies.png",name:"hoodies",link:'/products/hoodies'},
+    {img:"/img/sweaters.png",name:"sweaters",link:'/products/sweaters'},
   ]
   
   return (
