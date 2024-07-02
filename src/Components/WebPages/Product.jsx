@@ -3,13 +3,13 @@ import Navbar from '../HeaderFooter/Header';
 import Footer from '../HeaderFooter/Footer';
 import { useParams } from 'react-router-dom';
 import axios from '../../utils/Axios';
+import ProductSilde from '../Reuse_Component/ProductSilde';
+
 
 const Product = () => {
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState(null);
   const { id } = useParams();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -23,16 +23,6 @@ const Product = () => {
     };
     fetchProduct();
   }, [id]);
-
-  useEffect(() => {
-    let interval;
-    if (product && product.imageURL) {
-      interval = setInterval(() => {
-        setCurrentSlide((prevSlide) => (prevSlide + 1) % product.imageURL.length);
-      }, 4000);
-    }
-    return () => clearInterval(interval);
-  }, [product]);
 
   const [selectedSize, setSelectedSize] = useState(null);
 
@@ -50,34 +40,7 @@ const Product = () => {
   return (
     <>
       <Navbar />
-      <div className="pt-16 h-44 w-full">
-        <div className="w-full h-screen relative">
-          {product.imageURL.map((slide, index) => (
-            <div
-              key={index}
-              className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              <img
-                src={slide}
-                alt={`Slide ${index + 1}`}
-                className="h-full md:w-full object-cover"
-              />
-            </div>
-          ))}
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-            {product.imageURL.map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-500 ${
-                  index === currentSlide ? 'bg-white scale-125' : 'bg-gray-400 hover:bg-white'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+      <ProductSilde product={product}/>
       <div className="h-96 mt-40 w-full bg-gray-600"></div>
       <div className="pt-10 px-5">
         <div className="flex flex-col justify-between items-center text-center text-black">
@@ -92,9 +55,9 @@ const Product = () => {
       </div>
       <div className="h-44 mt-10 px-5 space-y-3 ">
         <h1 className="capitalize font-1 text-sm text-center">Select size</h1>
-        <div className="flex justify-center space-x-2 mt-5">
+        <div className="flex justify-center space-x-2 mt-5 text-xs ">
           <button
-            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
+            className={`px-2 py-1 text-xs font-medium rounded-md transition-colors ${
               selectedSize === 'xs'
                 ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
                 : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
@@ -104,7 +67,7 @@ const Product = () => {
             XS
           </button>
           <button
-            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
+            className={`px-2 py-1 text-xs font-medium rounded-md transition-colors ${
               selectedSize === 's'
                 ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
                 : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
@@ -114,7 +77,7 @@ const Product = () => {
             S
           </button>
           <button
-            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
+            className={`px-2 py-1 text-xs font-medium rounded-md transition-colors ${
               selectedSize === 'm'
                 ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
                 : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
@@ -124,7 +87,7 @@ const Product = () => {
             M
           </button>
           <button
-            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
+            className={`px-2 py-1 text-xs font-medium rounded-md transition-colors ${
               selectedSize === 'l'
                 ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
                 : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
@@ -134,7 +97,7 @@ const Product = () => {
             L
           </button>
           <button
-            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
+            className={`px-2 py-1 text-xs font-medium rounded-md transition-colors ${
               selectedSize === 'xl'
                 ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
                 : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
@@ -144,7 +107,7 @@ const Product = () => {
             XL
           </button>
           <button
-            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
+            className={`px-2 py-1 text-xs font-medium rounded-md transition-colors ${
               selectedSize === 'xxl'
                 ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
                 : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
@@ -161,6 +124,20 @@ const Product = () => {
         <div onClick={addToWishlist} className="py-2 font-mono px-10 border text-xs font-medium flex gap-3 justify-center items-center text-black hover:bg-zinc-300"> Add to Cart </div>
         )}
       <div onClick={addToWishlist} className="py-2 font-mono px-10 border text-xs font-medium flex gap-3 justify-center items-center text-black hover:bg-zinc-300"> <img className='h-4' src="/img/heart.svg" alt="" /> Add to Wishlist </div>
+      </div>
+
+      <div className="px-5 py-3">
+        <h1 className='text-base font-1 uppercase'>DESCRIPTION</h1>
+        <p className='text-xs px-1'>{product.description}</p>
+
+        <h6 className='text-sm font-1 mt-3 uppercase'> Size & Fit </h6>
+        <p className='text-xs px-1'>{product.fit}</p>
+
+        <h6 className='text-sm font-1 mt-3 uppercase'> Wash Care </h6>
+        {product.washCare.map((item, index) => (
+          <p key={index} className='text-xs px-1'>{item}</p>
+        ))}
+
       </div>
 
 

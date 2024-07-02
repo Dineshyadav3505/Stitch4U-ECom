@@ -6,13 +6,7 @@ const ImageCarousel = () => {
   const slides = slider[0].imageURL;
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 4000);
 
-    return () => clearInterval(interval);
-  }, [slides.length]);
 
   return (
     <div className="w-full h-screen relative">
