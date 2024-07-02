@@ -17,12 +17,14 @@ const Card = ({
   accessToken,
   colourCard,
   newitem="hidden",
-
-
+  discount = 0,
+  discountedPrice,
+  discountedPercentage,
 
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
 
   const removeToWishList = async () => {
     try {
@@ -77,9 +79,11 @@ const Card = ({
           <img className='w-full h-full object-fill' src={img} alt="" />
         </div>
         <div className=" px-2 pt-2">
-          <h3 className='text-black font-1 text-sm flex flex-wrap overflow-hidden '>{name}</h3>
-          <h3 className='text-black font-2 text-sm '>{`INR ${price}`}</h3>
-          <h3 className={`text-black fint-2 text-xs ${colourCard} `}>{`Colour : ${colour}`} </h3>
+          <h3 className='text-black capitalize font-1 text-sm flex flex-wrap overflow-hidden '>{name}</h3>
+          {discount === 0 ? (<h3 className='text-black font-2 text-sm '>{`INR ${price}`}</h3> ) :
+          (<h3 className=' font-2 text-sm text-red-500 '>{`INR ${discountedPrice}`} <span className='text-black relative ml-1'> <span className=' absolute h-[2px] w-full top-[45%] bg-black '></span> {`INR ${price}`}</span> </h3>)}
+
+          <h3 className={`text-black fint-2 text-xs capitalize ${colourCard} `}>{`Colour : ${colour}`} </h3>
         </div>
           <NavLink onClick={addToCart} className={`bg-black text-sm text-white flex items-center justify-center gap-2 py-2 mt-3 ${cart} `}> 
             <img src="/img/cartw.svg" alt="" />
