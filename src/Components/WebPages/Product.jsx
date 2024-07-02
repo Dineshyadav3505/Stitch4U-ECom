@@ -90,32 +90,81 @@ const Product = () => {
           </div>
         </div>
       </div>
-      <div className="h-44 mt-10 px-5 space-2">
+      <div className="h-44 mt-10 px-5 space-y-3 ">
         <h1 className="capitalize font-1 text-sm text-center">Select size</h1>
-        <div className="flex">
-          <div
-            className={`px-2 py-1 border text-xs rounded-md cursor-pointer transition-colors ${
+        <div className="flex justify-center space-x-2 mt-5">
+          <button
+            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
               selectedSize === 'xs'
-                ? 'bg-blue-900 text-white border-blue-900'
-                : 'bg-white text-gray-700 border-gray-900 hover:bg-gray-600'
+                ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
+                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
             }`}
             onClick={() => handleSizeChange('xs')}
           >
             XS
-          </div>
-          <div
-            className={`px-2 py-1 text-xs border  rounded-md cursor-pointer transition-colors ${
-              selectedSize === 'xs'
-                ? 'bg-blue-500 text-white border-blue-500'
-                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
+          </button>
+          <button
+            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
+              selectedSize === 's'
+                ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
+                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
             }`}
-            onClick={() => handleSizeChange('xs')}
+            onClick={() => handleSizeChange('s')}
           >
-            XS
-          </div>
-          
+            S
+          </button>
+          <button
+            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
+              selectedSize === 'm'
+                ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
+                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
+            }`}
+            onClick={() => handleSizeChange('m')}
+          >
+            M
+          </button>
+          <button
+            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
+              selectedSize === 'l'
+                ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
+                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
+            }`}
+            onClick={() => handleSizeChange('l')}
+          >
+            L
+          </button>
+          <button
+            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
+              selectedSize === 'xl'
+                ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
+                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
+            }`}
+            onClick={() => handleSizeChange('xl')}
+          >
+            XL
+          </button>
+          <button
+            className={`px-2 py-1 text-sm font-medium rounded-md transition-colors ${
+              selectedSize === 'xxl'
+                ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600'
+                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
+            }`}
+            onClick={() => handleSizeChange('xxl')}
+          >
+            XXL
+          </button>
         </div>
+        {selectedSize === null ?
+        (
+        <div className="py-2 font-mono px-10 border font-medium flex gap-3 text-xs justify-center items-center text-black "> Select the Size</div>
+        ):(
+        <div onClick={addToWishlist} className="py-2 font-mono px-10 border text-xs font-medium flex gap-3 justify-center items-center text-black hover:bg-zinc-300"> Add to Cart </div>
+        )}
+      <div onClick={addToWishlist} className="py-2 font-mono px-10 border text-xs font-medium flex gap-3 justify-center items-center text-black hover:bg-zinc-300"> <img className='h-4' src="/img/heart.svg" alt="" /> Add to Wishlist </div>
       </div>
+
+
+
       <Footer />
     </>
   );
