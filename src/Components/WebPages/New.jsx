@@ -46,7 +46,7 @@ const New = () => {
   return (
     <>
       <Navbar />
-      <div className="px-[4vw] flex justify-around flex-wrap relative">
+      <div className="px-[4vw] py-16 flex justify-around flex-wrap relative">
         {addToWishList===true ? <h1 className='absolute left-1/2 -translate-x-1/2  z-20 bg-black rounded text-sm text-white px-4 py-1 w-1/2 text-center'>Added to WishList</h1> : null}
         {NewProduct?.map((product) => (
           <Card
@@ -57,6 +57,9 @@ const New = () => {
             colour={product.productId.color}
             price={product.productId.price}
             size={product.productId.size}
+            discount={product.discount}
+            discountedPrice={product.discountedPrice}
+            discountedPercentage={product.discountedPercentage}
             heartadd={"hidden"}
             heartminus={"block"}
             colourCard={""}

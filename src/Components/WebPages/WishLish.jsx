@@ -62,6 +62,9 @@ const WishList = () => {
                   name={item.productId.productName}
                   colour={item.productId.color}
                   price={item.productId.price}
+                  discount={item.productId.discount}
+                  discountedPrice={item.productId.discountedPrice}
+                  discountedPercentage={item.productId.discountedPercentage}
                   heart={""}
                   cart={""}
                   heartadd={"block"}
@@ -69,6 +72,7 @@ const WishList = () => {
                   accessToken={accessToken}
                   quantityCard={"hidden"}
                   colourCard={"hidden"}
+
                 />
               ))):(
                 <div className='flex flex-col items-center mx-auto py-4 '>
