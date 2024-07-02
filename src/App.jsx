@@ -27,12 +27,13 @@ const App = () => {
         <Route path="/search" element={<SearchPage/>} />
 
         <Route path="/new" element={<New/>} />
-        <Route path="/new/product/:id" element={<Product/>} />
 
         
-        <Route path="/product/:type" element={<CatagoreyCart/>} />
+        <Route path="/products/:type" element={<CatagoreyCart/>} />
         <Route path="/product/:id" element={<Product/>} />
+        <Route path="/products/:catgory/product/:id" element={<Product/>} />
         <Route path="/cart/product/:id" element={<Product/>} />
+        <Route path="/new/product/:id" element={<Product/>} />
         <Route path="/wishlist/product/:id" element={<Product/>} />
 
         {/* Protected user Routes  */}

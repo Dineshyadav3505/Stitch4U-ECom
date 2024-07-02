@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import axios from '../../utils/Axios'
+import { setProduct } from '../../store/orderSlice';
 
 const CartCard = ({
     id,
@@ -55,7 +56,7 @@ const CartCard = ({
   return (
     <div className="h-48 w-full flex p-3 relative ">
         <img onClick={deltetItem} className='h-6 w-6 absolute top-3  right-3' src="/img/delete.svg" alt="" />
-        <NavLink to={`"product/${id}"`} className=" h-full ">
+        <NavLink to={`product/${id}`} className=" h-full ">
           <img className='h-full' src={img[0]} alt="" />
         </NavLink>
         <div className="px-4 py-2 space-y-2 lg:flex gap-14  ">
@@ -126,7 +127,6 @@ const CartCard = ({
 export default CartCard
 
 
-const orderProcess = () =>{
-  console.log(count)
-
+const createOrder = () =>{
+  
 }
