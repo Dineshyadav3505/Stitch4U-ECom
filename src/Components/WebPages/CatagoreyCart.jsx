@@ -44,6 +44,9 @@ const CatagoreyCart = () => {
                 colour={product.color}
                 price={product.price}
                 size={product.size}
+                discount={product.discount}
+                discountedPrice={product.discountedPrice}
+                discountedPercentage={product.discountedPercentage}
                 heartadd={"hidden"}
                 heartminus={"block"}
                 colourCard={""}

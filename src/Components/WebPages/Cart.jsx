@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import axios from '../../utils/Axios'
 import { setCart } from '../../store/cartSlice';
 import Card from '../Reuse_Component/ProductCard';
+import CartCard from '../Reuse_Component/CartCard';
 
 
 const Cart = () => {
@@ -34,9 +35,9 @@ const Cart = () => {
   const accessToken = Cookies.get('accessToken'); 
   const dispatch = useDispatch();
   const Cart = useSelector((state) => state.cart.product)
-
+  
   const total = Cart.map((item)=>{
-    return item.productId.price 
+    return item.productId?.price 
   })
   let sum = 0;
   for (let i = 0; i < total.length; i++) {
@@ -44,50 +45,30 @@ const Cart = () => {
   }
   const totalPrice = sum
 
-  const deltetItem = async () => {
-    try {
-      console.log(id)
-      console.log(accessToken)
-      const response = await axios.delete(`/users/detetTocart/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        },
-      });
-
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-
-
   return (
     <>
     <Navbar/>
     <div className="md:flex">
-      <div className='w-[100%] lg:min-w-[80%] bg-[#FAF9F8] pt-16 '>
+      <div className='w-[100%] lg:min-w-[60%] bg-[#FAF9F8] pt-16 '>
             <div className="">
             <div className=" px-3 py-10 rounded-md ">
               <h5 className='text-base uppercase text-center font-1 font-semibold'>Shoppng bag</h5>
               <div className="flex gap-3 md:gap-12 lg:gap-16 py-3 md:px-6 flex-wrap">
                 {Cart.length > 0 ? (
                   Cart.map((item) => (
-                    <div className="h-48 w-full flex p-3 relative ">
-                      <img onClick={deltetItem} className='h-6 w-6 absolute top-3  right-3' src="/img/delete.svg" alt="" />
-                      <NavLink to={`product/${item.productId._id}`} className="w-[34%] h-full bg-black">
-                        <img src={item.productId.imageURL[0]} alt="" />
-                      </NavLink>
-                      <div className="px-4 py-2 space-y-2">
-                        <h6 className='text-blacl text-sm mt-2'>Stitch4U</h6>
-                        <h6 className='text-blacl text-sm '>{item.productId.name}</h6>
-                        <h6 className='text-blacl text-sm '>₹ {item.productId.price}</h6>
-                        <h6 className='text-blacl text-sm '>Size : {item.productId.size}</h6>
-                        <h6 className='text-blacl text-sm '>quantity : {item.quantity}</h6>
-                        <h6 className='text-blacl text-sm '>${item.productId.price * item.quantity}</h6>
-                      </div>
-                    </div>
-                  ))
-                ) : (
+                    <CartCard
+                    key={item.productId._id}
+                    id={item.productId._id}     
+                    img={item.productId.imageURL}
+                    productName={item.productId.productName}
+                    price={item.productId.price}
+                    color={item.productId.color}
+                    discount={item.productId.discount}
+                    discountedPrice = {item.productId?.discountedPrice}
+                    />
+                  )
+                    
+                ) ): (
                   <div className='flex flex-col items-center mx-auto py-4 '>
                     <h6 className='text-black text-4xl font-semibold uppercase'>Shopping Bag</h6>
                     <h6 className='text-black text-sm mt-10 font-semibold uppercase '>Your Shopping Bag is empty! </h6>
@@ -103,7 +84,7 @@ const Cart = () => {
             </div>
             </div>
       </div>
-      <div className='w-[100%] lg:w-[20%] py-3 md:pt-28 px-5'>
+      <div className='w-[100%] lg:w-[40%] py-3 md:pt-28 px-5'>
         <div className="flex justify-between items-center border-b-[1px] py-2">
           <h6 className='font-2 text-sm text-[#6c6c6c]'>Discounts</h6>
           <NavLink to="/discount" className='text-black text-xs font-2 underline'>Apply discount</NavLink>
@@ -129,7 +110,7 @@ const Cart = () => {
           </div>
         </div>
 
-        <div className="">
+        <div className="flex flex-col justify-center">
           {/* Total */}
           <div className="flex justify-between items-center py-3">
             <h6 className='font-1 text-sm text-[#black]'>Total</h6>
@@ -137,7 +118,7 @@ const Cart = () => {
           </div>
 
           {/* check out button */}
-          <NavLink className='mt-3 bg-black text-white py-2 flex justify-center items-center '> Continue to checkout</NavLink>
+          <button className='mt-3 bg-black text-white py-2 px-2 flex justify-center items-center '> Continue to checkout</button>
         </div>
 
         {/* other */}
@@ -161,3 +142,18 @@ const Cart = () => {
 
 
 export default Cart
+
+
+const deltetItem = async () => {
+  try {
+    console.log(accessToken)
+    const response = await axios.delete(`/users/detetTocart/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+      },
+    });
+
+  } catch (error) {
+    console.error(error);
+  }
+}
