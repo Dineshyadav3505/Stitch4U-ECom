@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import axios from '../../utils/Axios'
+import axios from '../../utils/Axios';
 import { setProduct } from '../../store/orderSlice';
 import { useDispatch } from 'react-redux';
+import {deleteProduct} from '../../store/cartSlice';
 
 const CartCard = ({
   id, img, productName, price, discount, discountedPrice, quantity, size
 }) => {
-  const accessToken = Cookies.get('accessToken'); 
+  const accessToken = Cookies.get('accessToken');
   const dispatch = useDispatch();
-
 
   const deleteItem = async () => {
     try {
@@ -20,6 +20,8 @@ const CartCard = ({
         },
       });
       dispatch(setProduct(response.data.data)); 
+      dispatch(deleteProduct(id));
+
     } catch (error) {
       console.log(error.response.data);
     }
@@ -48,7 +50,7 @@ const CartCard = ({
 
       </div>
     </div>
-  )
+  );
 }
 
-export default CartCard
+export default CartCard;
