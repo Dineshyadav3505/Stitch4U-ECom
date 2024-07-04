@@ -14,7 +14,7 @@ const ProductSlide = ({ product }) => {
   }, [product, currentSlide]);
 
   return (
-    <div className="pt-16 h-44 w-full">
+    <div className="pt-16 h-full w-full lg:w-1/2">
       <div className="w-full h-screen relative">
         {product.imageURL.map((slide, index) => (
           <div
