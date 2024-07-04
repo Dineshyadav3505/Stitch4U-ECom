@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setUserAddress } from '../../store/userAddressSlice';
 import {setProductAdd } from '../../store/orderSlice';
 import Input from '../Reuse_Component/Input';
+import { useNavigate } from 'react-router-dom';
 
 const UserAddress = () => {
   const accessToken = Cookies.get('accessToken'); 
@@ -17,6 +18,7 @@ const UserAddress = () => {
   const grandTotal = useSelector((state) => state.order.grandTotal);
   const [selectedAddress, setSelectedAddress] = useState(null); // Track selected address
   const [newAddress, setNewAddress] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     addressLine1: '',
@@ -27,6 +29,7 @@ const UserAddress = () => {
   });
 
   const productId = product.map((product) =>  product._id);
+
 
   useEffect(() => {
     const fetchUserAddress = async () => {
@@ -64,7 +67,6 @@ const UserAddress = () => {
       const response = await axios.post('/order/create',
       {
         productId: productId,
-        grandTotal: grandTotal,
         userAddress: selectedAddress,
       },
       {
@@ -73,7 +75,7 @@ const UserAddress = () => {
         }
       },
       );
-      console.log('Order Created:', response.data.data);
+      navigate("/order");
 
     } catch (error) {
       console.error(error.response);
