@@ -4,9 +4,11 @@ import Footer from '../HeaderFooter/Footer';
 import { useParams } from 'react-router-dom';
 import axios from '../../utils/Axios';
 import ProductSilde from '../Reuse_Component/ProductSilde';
+import Cookies from 'js-cookie';
 
 
 const Product = () => {
+  const accessToken = Cookies.get('accessToken'); 
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState(null);
   const { id } = useParams();
@@ -18,7 +20,7 @@ const Product = () => {
         setProduct(response.data.data);
         setLoading(false);
       } catch (error) {
-        console.error(error);
+        console.error(error.response.data.message);
       }
     };
     fetchProduct();
@@ -36,6 +38,24 @@ const Product = () => {
 
   if (loading) return <h1>Loading...</h1>;
   if (!product) return null;
+
+  const addToCart = async () => {
+    try {
+      const response = await axios.post(`/users/addTocart/${id}`, {
+        productSize: selectedSize,
+      }, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+
+    } catch (error) {
+      console.error(error.response.data.message);
+      if(error.response.data.message === 'Item already in cart'){
+      }
+    }
+  }
+
 
   return (
     <>
@@ -121,7 +141,7 @@ const Product = () => {
         (
         <div className="py-2 font-mono px-10 border font-medium flex gap-3 text-xs justify-center items-center text-black "> Select the Size</div>
         ):(
-        <div onClick={addToWishlist} className="py-2 font-mono px-10 border text-xs font-medium flex gap-3 justify-center items-center text-black hover:bg-zinc-300"> Add to Cart </div>
+        <div onClick={addToCart} className="py-2 font-mono px-10 border text-xs font-medium flex gap-3 justify-center items-center text-black hover:bg-zinc-300"> Add to Cart </div>
         )}
       <div onClick={addToWishlist} className="py-2 font-mono px-10 border text-xs font-medium flex gap-3 justify-center items-center text-black hover:bg-zinc-300"> <img className='h-4' src="/img/heart.svg" alt="" /> Add to Wishlist </div>
       </div>

@@ -66,7 +66,7 @@ const WishList = () => {
                   discountedPrice={item.productId.discountedPrice}
                   discountedPercentage={item.productId.discountedPercentage}
                   heart={""}
-                  cart={""}
+                  cart={"hidden"}
                   heartadd={"block"}
                   heartminus={"hidden"}
                   accessToken={accessToken}
