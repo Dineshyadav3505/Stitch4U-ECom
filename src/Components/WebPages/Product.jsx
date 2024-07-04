@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../HeaderFooter/Header';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../HeaderFooter/Footer';
 import { useParams } from 'react-router-dom';
 import axios from '../../utils/Axios';
@@ -11,6 +12,8 @@ const Product = () => {
   const accessToken = Cookies.get('accessToken'); 
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState(null);
+  const navigate = useNavigate();
+  const [cart, setCart] = useState("");
   const { id } = useParams();
 
   useEffect(() => {
@@ -48,11 +51,21 @@ const Product = () => {
           'Authorization': `Bearer ${accessToken}`,
         },
       });
+      setCart("Item added to cart successfully");
+
+      setTimeout(() => {
+        navigate('/cart');
+      }, 1000);
+      
 
     } catch (error) {
-      console.error(error.response.data.message);
-      if(error.response.data.message === 'Item already in cart'){
-      }
+      setCart(error.response.data.message);
+
+      setTimeout(() => {
+        navigate('/cart');
+      }, 1000);
+      
+
     }
   }
 
@@ -73,8 +86,9 @@ const Product = () => {
           </div>
         </div>
       </div>
-      <div className="h-44 mt-10 px-5 space-y-3 ">
+      <div className="h-44 mt-10 px-5 space-y-3 relative ">
         <h1 className="capitalize font-1 text-sm text-center">Select size</h1>
+        {cart.length > 0 ? (<h6 className='text-center bg-black text-xs py-1 text-white'>{cart}</h6>): null }
         <div className="flex justify-center space-x-2 mt-5 text-xs ">
           <button
             className={`px-2 py-1 text-xs font-medium rounded-md transition-colors ${
@@ -141,9 +155,9 @@ const Product = () => {
         (
         <div className="py-2 font-mono px-10 border font-medium flex gap-3 text-xs justify-center items-center text-black "> Select the Size</div>
         ):(
-        <div onClick={addToCart} className="py-2 font-mono px-10 border text-xs font-medium flex gap-3 justify-center items-center text-black hover:bg-zinc-300"> Add to Cart </div>
+        <div onClick={addToCart}  className="py-2 font-mono px-10 border text-xs font-medium flex gap-3 justify-center items-center text-black hover:bg-zinc-300 "> Add to Cart  </div>
         )}
-      <div onClick={addToWishlist} className="py-2 font-mono px-10 border text-xs font-medium flex gap-3 justify-center items-center text-black hover:bg-zinc-300"> <img className='h-4' src="/img/heart.svg" alt="" /> Add to Wishlist </div>
+      <div onClick={addToWishlist} className="py-2 font-mono px-10 border text-xs font-medium flex gap-3 justify-center items-center text-black hover:bg-zinc-300 "> <img className='h-4' src="/img/heart.svg" alt="" /> Add to Wishlist </div>
       </div>
 
       <div className="px-5 py-3">

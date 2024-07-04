@@ -14,6 +14,7 @@ import Profile from './Components/WebPages/Profile'
 import Product from './Components/WebPages/Product'
 import Cookies from 'js-cookie'
 import CatagoreyCart from './Components/WebPages/CatagoreyCart'
+import UserAddress from './Components/WebPages/UserAddress'
 
 const App = () => {       
 
@@ -28,6 +29,7 @@ const App = () => {
 
         <Route path="/new" element={<New/>} />
 
+        <Route path="/userAddress" element={<UserAddress/>} />
         
         <Route path="/products/:type" element={<CatagoreyCart/>} />
         <Route path="/product/:id" element={<Product/>} />
