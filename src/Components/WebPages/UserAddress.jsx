@@ -13,6 +13,8 @@ const UserAddress = () => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const userAddress = useSelector((state) => state.userAddress.userAddress);
+  const product = useSelector((state) => state.order.product);
+  const grandTotal = useSelector((state) => state.order.grandTotal);
   const [selectedAddress, setSelectedAddress] = useState(null); // Track selected address
   const [newAddress, setNewAddress] = useState(false);
   const [formData, setFormData] = useState({
@@ -23,6 +25,8 @@ const UserAddress = () => {
     pincode: '',
     phoneNumber: ''
   });
+
+  const productId = product.map((product) =>  product._id);
 
   useEffect(() => {
     const fetchUserAddress = async () => {
@@ -55,14 +59,34 @@ const UserAddress = () => {
     }
   };
 
-  const order = () => {
-    console.log('order');
+  const createOreder = async() => {
+    try {
+      const response = await axios.post('/order/create',
+      {
+        productId: productId,
+        grandTotal: grandTotal,
+        userAddress: selectedAddress,
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        }
+      },
+      );
+      console.log('Order Created:', response.data.data);
 
+    } catch (error) {
+      console.error(error.response);
+    }
+  };
+
+  const order = () => {
     if (selectedAddress) {
-      console.log('Selected Address:', selectedAddress);
       dispatch(setProductAdd(selectedAddress));
+
+      createOreder();
+
       
-      // Proceed with order logic using selectedAddress
     } else {
       console.log('Please select an address.');
       // Display a message or UI indication to select an address
