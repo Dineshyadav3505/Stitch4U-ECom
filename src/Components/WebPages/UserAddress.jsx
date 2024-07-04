@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from '../HeaderFooter/Header'
-import axios from '../../utils/Axios'
+import React, { useEffect, useState } from 'react';
+import Navbar from '../HeaderFooter/Header';
+import axios from '../../utils/Axios';
 import Cookies from 'js-cookie';
-import Footer from '../HeaderFooter/Footer'
-import { useSelector, useDispatch } from 'react-redux'
-import { setUserAddress } from '../../store/userAddressSlice'
+import Footer from '../HeaderFooter/Footer';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUserAddress } from '../../store/userAddressSlice';
+import {setProductAdd } from '../../store/orderSlice';
 import Input from '../Reuse_Component/Input';
 
 const UserAddress = () => {
@@ -12,6 +13,7 @@ const UserAddress = () => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const userAddress = useSelector((state) => state.userAddress.userAddress);
+  const [selectedAddress, setSelectedAddress] = useState(null); // Track selected address
   const [newAddress, setNewAddress] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -47,19 +49,29 @@ const UserAddress = () => {
           'Authorization': `Bearer ${accessToken}`,
         },
       });
-      dispatch(setUserAddress(userAddress.filter((item) => item.id !== id))); 
+      dispatch(setUserAddress(userAddress.filter((item) => item._id !== id))); 
     } catch (error) {
       console.error(error.response.data.message);
     }
   };
 
   const order = () => {
-    console.log('order')
-  } 
+    console.log('order');
+
+    if (selectedAddress) {
+      console.log('Selected Address:', selectedAddress);
+      dispatch(setProductAdd(selectedAddress));
+      
+      // Proceed with order logic using selectedAddress
+    } else {
+      console.log('Please select an address.');
+      // Display a message or UI indication to select an address
+    }
+  };
 
   const addAddress = () => { 
-    setNewAddress(!newAddress)
-  }
+    setNewAddress(!newAddress);
+  };
 
   const resetForm = () => {
     setFormData({
@@ -70,7 +82,7 @@ const UserAddress = () => {
       pincode: '',
       phoneNumber: ''
     });
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,6 +104,14 @@ const UserAddress = () => {
     }
   };
 
+  const handleCheckboxChange = (id) => {
+    if (selectedAddress === id) {
+      setSelectedAddress(null); // Deselect if already selected
+    } else {
+      setSelectedAddress(id); // Select the new address
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -103,108 +123,118 @@ const UserAddress = () => {
           ) : (
             userAddress.length > 0 ? (
               userAddress.map((item) => (
-                <div key={item.id} className="py-2 border rounded-md px-2 mt-2 font-medium font-sans relative">
-                  <button className='flex gap-2 border px-2 text-sm justify-center items-center rounded-md absolute right-2' onClick={() => deleteAddress(item._id)}><img className='h-4' src="/img/delete.svg" alt="" /> Delete</button>
-                  <p className="text-sm text-black capitalize">{item.name}</p>
-                  <p className="text-sm text-black capitalize">{item.addressLine1}</p>
-                  <p className="text-sm text-black capitalize">{item.addressLine2}</p>
-                  <p className="text-sm text-black capitalize">{item.city}, {item.country}, {item.pincode}</p>
-                  <p className="text-sm text-black capitalize">{item.phoneNumber}</p>
+                <div key={item._id} className="py-2 border rounded-md px-2 mt-2 font-medium font-sans relative">
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={selectedAddress === item._id}
+                      onChange={() => handleCheckboxChange(item._id)}
+                      className="mr-2"
+                    />
+                    <div className="flex flex-col">
+                      <button className='flex gap-2 border px-2 text-sm justify-center items-center rounded-md absolute right-2' onClick={() => deleteAddress(item._id)}><img className='h-4' src="/img/delete.svg" alt="" /> Delete</button>
+                      <p className="text-sm text-black capitalize">{item.name}</p>
+                      <p className="text-sm text-black capitalize">{item.addressLine1}</p>
+                      <p className="text-sm text-black capitalize">{item.addressLine2}</p>
+                      <p className="text-sm text-black capitalize">{item.city}, {item.pincode}</p>
+                      <p className="text-sm text-black capitalize">{item.phoneNumber}</p>
+                    </div>
+                  </label>
                 </div>
               ))
             ) : (
-              <form action="">
+              <div className="flex flex-col items-center">
                 <p className="text-sm text-black capitalize">No address found</p>
-                <button type="submit" className="mt-2 bg-black text-white py-2 px-4 rounded-md">
+                <button onClick={addAddress} className="mt-2 bg-black text-white py-2 px-4 rounded-md">
                   Add New Address
                 </button>
-              </form>
+              </div>
             )
           )}
         </div>
         <div className=" flex  justify-around w-full">
           <button onClick={addAddress} className=" text-center bg-black text-white px-3 py-1 rounded-md capitalize ">
-            Add Address
+            New Address 
           </button>
           <button onClick={order} className=" text-center bg-black text-white px-3 py-1 rounded-md capitalize ">
-            confirm Order 
+            Confirm Order 
           </button>
         </div>
       </div>
 
-      {newAddress === true ? (
-        <div className=' absolute top-16 h-full w-full bg-white px-5 py-3'>
+      {newAddress && (
+        <div className='absolute top-16 h-full w-full bg-white px-5 py-3'>
           <form onSubmit={handleSubmit}>
             <h1 className='font-sans capitalize font-semibold'>New Address</h1>
             <Input
-            label='Name'
-            labelclass="text-xs"
-            type="text"
-            placeholder="Name"
-            name="name"
-            className="w-full border-[1px] text-sm rounded-md px-2 py-1"
-            value={formData.name}
-            onChange={(e) => setFormData({...formData, name: e.target.value })}
+              label='Name'
+              labelclass="text-xs"
+              type="text"
+              placeholder="Name"
+              name="name"
+              className="w-full border-[1px] text-sm rounded-md px-2 py-1"
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value })}
             />
             <Input
-            label='Address Line 1'
-            labelclass="text-xs"
-            type="text"
-            placeholder="house No- "
-            name="addressLine1"
-            className="w-full border-[1px] text-sm rounded-md px-2 py-1"
-            value={formData.addressLine1}
-            onChange={(e) => setFormData({...formData, addressLine1: e.target.value })}
+              label='Address Line 1'
+              labelclass="text-xs"
+              type="text"
+              placeholder="Address Line 1"
+              name="addressLine1"
+              className="w-full border-[1px] text-sm rounded-md px-2 py-1"
+              value={formData.addressLine1}
+              onChange={(e) => setFormData({...formData, addressLine1: e.target.value })}
             />
             <Input
-            label='Address Line 2'
-            labelclass="text-xs"
-            type="text"
-            placeholder="Area"
-            name="addressLine2"
-            className="w-full border-[1px] text-sm rounded-md px-2 py-1"
-            value={formData.addressLine2}
-            onChange={(e) => setFormData({...formData, addressLine2: e.target.value })}
+              label='Address Line 2'
+              labelclass="text-xs"
+              type="text"
+              placeholder="Address Line 2"
+              name="addressLine2"
+              className="w-full border-[1px] text-sm rounded-md px-2 py-1"
+              value={formData.addressLine2}
+              onChange={(e) => setFormData({...formData, addressLine2: e.target.value })}
             />
             <Input
-            label='City'
-            labelclass="text-xs"
-            type="text"
-            placeholder="City"
-            name="city"
-            className="w-full border-[1px] text-sm rounded-md px-2 py-1"
-            value={formData.city}
-            onChange={(e) => setFormData({...formData, city: e.target.value })}
+              label='City'
+              labelclass="text-xs"
+              type="text"
+              placeholder="City"
+              name="city"
+              className="w-full border-[1px] text-sm rounded-md px-2 py-1"
+              value={formData.city}
+              onChange={(e) => setFormData({...formData, city: e.target.value })}
             />
             <Input
-            label='Pincode'
-            labelclass="text-xs"
-            type="text"
-            placeholder="Pincode"
-            name="pincode"
-            className="w-full border-[1px] text-sm rounded-md px-2 py-1"
-            value={formData.pincode}
-            onChange={(e) => setFormData({...formData, pincode: e.target.value })}
+              label='Pincode'
+              labelclass="text-xs"
+              type="text"
+              placeholder="Pincode"
+              name="pincode"
+              className="w-full border-[1px] text-sm rounded-md px-2 py-1"
+              value={formData.pincode}
+              onChange={(e) => setFormData({...formData, pincode: e.target.value })}
             />
             <Input
-            label='Phone Number'
-            labelclass="text-xs"
-            type="text"
-            placeholder="Phone Number"
-            name="phoneNumber"
-            className="w-full border-[1px] text-sm rounded-md px-2 py-1"
-            value={formData.phoneNumber}
-            onChange={(e) => setFormData({...formData, phoneNumber: e.target.value })}
+              label='Phone Number'
+              labelclass="text-xs"
+              type="text"
+              placeholder="Phone Number"
+              name="phoneNumber"
+              className="w-full border-[1px] text-sm rounded-md px-2 py-1"
+              value={formData.phoneNumber}
+              onChange={(e) => setFormData({...formData, phoneNumber: e.target.value })}
             />
             <button type="submit" className="mt-2 bg-black text-white py-2 px-4 rounded-md">
               Save Address
             </button>
           </form>
         </div>
-      ) : null }
+      )}
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default UserAddress
+export default UserAddress;
