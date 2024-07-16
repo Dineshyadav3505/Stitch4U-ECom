@@ -8,6 +8,8 @@ import { setUserAddress } from '../../store/userAddressSlice';
 import {setProductAdd } from '../../store/orderSlice';
 import Input from '../Reuse_Component/Input';
 import { useNavigate } from 'react-router-dom';
+import { setProduct } from '../../store/orderSlice';
+import {deleteProduct} from '../../store/cartSlice';
 
 const UserAddress = () => {
   const accessToken = Cookies.get('accessToken'); 
@@ -62,6 +64,8 @@ const UserAddress = () => {
     }
   };
 
+
+
   const createOreder = async() => {
     try {
       const response = await axios.post('/order/create',
@@ -77,6 +81,7 @@ const UserAddress = () => {
       );
       navigate("/order");
 
+
     } catch (error) {
       console.error(error.response);
     }
@@ -87,7 +92,19 @@ const UserAddress = () => {
       dispatch(setProductAdd(selectedAddress));
 
       createOreder();
-
+      productId.forEach(async (id) => {
+        try {
+          const response = await axios.delete(`/users/deleteFromCart/${id}`, {
+            headers: {
+              'Authorization': `Bearer ${accessToken}`,
+            },
+          });
+          dispatch(setProduct(response.data.data));
+          dispatch(deleteProduct(id));
+        } catch (error) {
+          console.log(error);
+        }
+      });
       
     } else {
       console.log('Please select an address.');
